@@ -66,6 +66,47 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Estado inicial: conteúdo oculto */
+    #main-content, #site-nav, .whatsapp-float, .back-to-top, #progress-bar {
+      display: none;
+      opacity: 0;
+    }
+
+    body.content-revealed #main-content,
+    body.content-revealed #site-nav,
+    body.content-revealed .whatsapp-float,
+    body.content-revealed .back-to-top,
+    body.content-revealed #progress-bar {
+      display: block;
+      animation: fadeInContent 1s ease forwards;
+    }
+
+    @keyframes fadeInContent {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ajuste para o RSVP inicial */
+    #rsvp-initial {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background: var(--cream);
+      position: relative;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    body.content-revealed #rsvp-initial {
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+    }
+
     /* ── BARRA DE PROGRESSO ── */
     #progress-bar {
       position: fixed;
@@ -845,8 +886,70 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<!-- RSVP INICIAL (Tela de Entrada) -->
+<div id="rsvp-initial">
+  <section id="confirmacao-inicial" class="reveal visible" style="opacity: 1; transform: none; padding: 0;">
+    <div class="rsvp-container">
+      <div class="section-title">Confirmar Presença</div>
+      <div class="section-sub">Sua presença é muito especial para nós</div>
+
+      <div class="rsvp-box reveal visible" style="opacity: 1; transform: none;">
+        <p class="rsvp-note">
+          "Alegrem-se com os que se alegram"
+          <span class="rsvp-note-ref">Romanos 12:15</span>
+        </p>
+        <div class="form-group">
+          <label for="nome-inicial">Seu nome</label>
+          <input type="text" id="nome-inicial" placeholder="Nome completo" required>
+        </div>
+        <div class="form-group">
+          <label>Você irá ao evento?</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="sim-inicial" name="presenca-inicial" value="Sim, estarei presente! 🎉">
+              <label for="sim-inicial">✓ Sim, irei!</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="nao-inicial" name="presenca-inicial" value="Infelizmente não poderei comparecer.">
+              <label for="nao-inicial">✗ Não poderei ir</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="adultos-inicial">Número de adultos</label>
+          <select id="adultos-inicial">
+            <option value="">Selecione</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <p id="rsvp-status-inicial" class="rsvp-status" aria-live="polite"></p>
+        <button type="button" class="btn-submit" id="btn-enviar-inicial" onclick="enviarConfirmacaoInicial()">
+          Confirmar Presença
+        </button>
+      </div>
+
+      <div class="rsvp-footer-note reveal visible" style="opacity: 1; transform: none;">
+        <span class="cursive">Ficaremos muito felizes em ter você conosco!</span>
+        <p>
+          Para nos ajudar na organização desse dia, confirme sua presença até o dia <strong>10 de Junho de 2026</strong>.
+        </p>
+        <a href="https://wa.me/5585986657389?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20casamento." target="_blank" rel="noopener noreferrer" class="rsvp-whatsapp-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Dúvidas? Entre em contato pelo WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTEÚDO PRINCIPAL (Oculto Inicialmente) -->
+<div id="main-content">
+  <!-- HERO -->
+  <div class="hero">
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <img
     class="hero-img"
@@ -869,63 +972,7 @@
   </div>
 </div>
 
-<!-- RSVP -->
-<section id="confirmacao" class="reveal">
-  <div class="section-title">Confirmar Presença</div>
-  <div class="section-sub">Sua presença é muito especial para nós</div>
-  
-  <div class="rsvp-container">
-    <div class="rsvp-box reveal">
-      <p class="rsvp-note">
-        "Alegrem-se com os que se alegram"
-        <span class="rsvp-note-ref">Romanos 12:15</span>
-      </p>
-      <div class="form-group">
-        <label for="nome">Seu nome</label>
-        <input type="text" id="nome" placeholder="Nome completo" required>
-      </div>
-      <div class="form-group">
-        <label>Você irá ao evento?</label>
-        <div class="radio-group">
-          <div class="radio-option">
-            <input type="radio" id="sim" name="presenca" value="Sim, estarei presente! 🎉">
-            <label for="sim">✓ Sim, irei!</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" id="nao" name="presenca" value="Infelizmente não poderei comparecer.">
-            <label for="nao">✗ Não poderei ir</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group" id="adultos-group">
-        <label for="adultos">Número de adultos</label>
-        <select id="adultos">
-          <option value="">Selecione</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <p id="rsvp-status" class="rsvp-status" aria-live="polite"></p>
-      <button type="button" class="btn-submit" id="btn-enviar" onclick="enviarConfirmacao()">
-        Confirmar Presença
-      </button>
-    </div>
 
-    <div class="rsvp-footer-note reveal">
-      <span class="cursive">Ficaremos muito felizes em ter você conosco!</span>
-      <p>
-        Para nos ajudar na organização desse dia, confirme sua presença até o dia <strong>10 de Junho de 2026</strong>.
-      </p>
-      <a href="https://wa.me/5585986657389?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20casamento." target="_blank" rel="noopener noreferrer" class="rsvp-whatsapp-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span>Dúvidas? Entre em contato pelo WhatsApp</span>
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- COUNTDOWN -->
 <section id="countdown" class="reveal">
@@ -1039,6 +1086,7 @@
   <div class="footer-names">Davi &amp; Clara</div>
   26 de Junho de 2026 · Fortaleza, CE
 </footer>
+</div> <!-- Fim do main-content -->
 
 
 
@@ -1409,16 +1457,66 @@
   }
 
   /* ─────────────────────────────────────────────
-     INIT
+     RSVP INICIAL E REVELAÇÃO
   ───────────────────────────────────────────── */
-  iniciarContagemRegressiva();
-  ativarRevelacaoAoRolar();
-  initNavMobile();
+  async function enviarConfirmacaoInicial() {
+    const statusEl  = document.getElementById('rsvp-status-inicial');
+    const btn       = document.getElementById('btn-enviar-inicial');
+    const nome      = document.getElementById('nome-inicial').value.trim();
+    const presencaEl = document.querySelector('input[name="presenca-inicial"]:checked');
+    const adultos   = document.getElementById('adultos-inicial').value;
 
-  initLazyMap();
-  initProgressBar();
-  initBackToTop();
-  initHeroParticles();
+    if (!nome) { alert('Por favor, informe seu nome.'); return; }
+    if (!presencaEl) { alert('Por favor, indique se você irá ou não.'); return; }
+
+    const presenca = presencaEl.value;
+    const textoOriginal = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          nome, presenca, adultos: adultos || '1',
+          _subject: 'Confirmação Inicial — Casamento Davi & Clara',
+        }),
+      });
+
+      if (!res.ok) throw new Error('Erro ao enviar');
+
+      statusEl.textContent = 'Presença confirmada! Revelando o convite... 🎉';
+      statusEl.className = 'rsvp-status ok';
+
+      if (presenca.startsWith('Sim')) launchConfetti();
+
+      setTimeout(() => {
+        document.body.classList.add('content-revealed');
+        // Reinicializar funções agora que o conteúdo está visível
+        iniciarContagemRegressiva();
+        ativarRevelacaoAoRolar();
+        initNavMobile();
+        initLazyMap();
+        initProgressBar();
+        initBackToTop();
+        initHeroParticles();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }, 1500);
+
+    } catch (e) {
+      statusEl.textContent = 'Erro ao enviar. Tente novamente.';
+      statusEl.className = 'rsvp-status erro';
+      btn.disabled = false;
+      btn.textContent = textoOriginal;
+    }
+  }
+
+  /* ─────────────────────────────────────────────
+     INIT (Apenas se já revelado, ou aguarda RSVP)
+  ───────────────────────────────────────────── */
+  // Se o usuário já confirmou antes (opcional: usar localStorage), poderia revelar direto.
+  // Por padrão, aguardamos o clique no botão inicial.
 </script>
 
 </body>
