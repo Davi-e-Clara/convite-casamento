@@ -298,43 +298,43 @@
       max-width: 600px;
       margin: 40px auto;
       text-align: center;
-      padding: 28px 30px 22px;
+      padding: 26px 32px 22px;
       background:
-        radial-gradient(120% 140% at 50% 0%, rgba(255,255,255,0.85) 0%, rgba(248,242,232,0.55) 55%, rgba(233,241,249,0.45) 100%);
-      border-radius: 4px;
-      border: 1px solid rgba(201, 169, 110, 0.28);
+        radial-gradient(120% 140% at 50% 0%, rgba(255,255,255,0.9) 0%, rgba(248,242,232,0.6) 55%, rgba(233,241,249,0.5) 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(201, 169, 110, 0.35);
       box-shadow:
-        0 1px 0 rgba(255,255,255,0.6) inset,
-        0 0 0 1px rgba(201,169,110,0.08),
-        0 18px 40px -20px rgba(61, 47, 30, 0.18);
+        0 1px 0 rgba(255,255,255,0.7) inset,
+        0 0 0 6px rgba(255,255,255,0.45),
+        0 0 0 7px rgba(201,169,110,0.22),
+        0 22px 50px -24px rgba(61, 47, 30, 0.22);
       position: relative;
     }
-    /* Cantos ornamentais (dourado) */
+    /* Floreios SVG nos cantos superiores */
     .countdown-module::before,
     .countdown-module::after {
       content: "";
       position: absolute;
-      width: 18px; height: 18px;
-      border: 1px solid var(--gold);
-      opacity: 0.55;
+      top: 14px;
+      width: 44px; height: 22px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.75;
       pointer-events: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 32' fill='none' stroke='%23c9a96e' stroke-width='1.2' stroke-linecap='round'><path d='M2 16 H46'/><circle cx='52' cy='16' r='2.2' fill='%23c9a96e' stroke='none'/><path d='M60 16 q4 -8 12 -6'/><path d='M60 16 q4 8 12 6'/><path d='M46 16 q-6 -7 -14 -4'/><path d='M46 16 q-6 7 -14 4'/></svg>");
     }
-    .countdown-module::before {
-      top: 8px; left: 8px;
-      border-right: none; border-bottom: none;
-    }
-    .countdown-module::after {
-      bottom: 8px; right: 8px;
-      border-left: none; border-top: none;
-    }
+    .countdown-module::before { left: 18px; }
+    .countdown-module::after  { right: 18px; transform: scaleX(-1); }
+
     @supports (backdrop-filter: blur(10px)) {
       .countdown-module { backdrop-filter: blur(10px); }
     }
     .countdown-module-title {
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       color: var(--blue-navy);
-      margin-bottom: 6px;
-      opacity: 0.92;
+      margin-bottom: 16px;
+      opacity: 0.95;
       display: inline-flex;
       align-items: center;
       gap: 14px;
@@ -343,35 +343,28 @@
     }
     .countdown-module-title::before,
     .countdown-module-title::after {
-      content: "";
-      flex: 0 0 46px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.7;
-    }
-    .countdown-date-stamp {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
+      content: "✦";
+      flex: 0 0 auto;
+      font-size: 0.55rem;
       color: var(--gold);
-      margin-bottom: 18px;
-      opacity: 0.9;
+      opacity: 0.8;
     }
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
       position: relative;
-      padding: 6px 0 4px;
-      border-top: 1px solid rgba(201, 169, 110, 0.25);
-      border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+      padding: 8px 6px 6px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.35);
+      border-top: 1px solid rgba(201, 169, 110, 0.28);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.28);
     }
     .count-item {
       background: transparent;
       border: none;
-      border-radius: 0;
-      padding: 14px 5px 12px;
+      border-radius: 10px;
+      padding: 12px 5px 10px;
       text-align: center;
       transition: all 0.4s ease;
       box-shadow: none;
@@ -1061,7 +1054,6 @@
     <!-- Módulo de Contagem Integrado -->
     <div class="countdown-module reveal">
       <div class="countdown-module-title cursive">Falta pouco para o nosso sim</div>
-      <div class="countdown-date-stamp">26 · 06 · 2026</div>
       <div class="countdown-grid">
         <div class="count-item"><strong id="cd-dias">0</strong><span>Dias</span></div>
         <div class="count-item"><strong id="cd-horas">00</strong><span>Horas</span></div>
