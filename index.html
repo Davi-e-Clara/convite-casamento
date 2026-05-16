@@ -295,19 +295,19 @@
 
     /* ── COUNTDOWN MODULE (Integrado) ── */
     .countdown-module {
-      max-width: 600px;
-      margin: 40px auto;
+      max-width: 420px;
+      margin: 32px auto;
       text-align: center;
-      padding: 26px 32px 22px;
+      padding: 16px 22px 14px;
       background:
-        radial-gradient(120% 140% at 50% 0%, rgba(255,255,255,0.9) 0%, rgba(248,242,232,0.6) 55%, rgba(233,241,249,0.5) 100%);
-      border-radius: 24px;
-      border: 1px solid rgba(201, 169, 110, 0.35);
+        radial-gradient(120% 140% at 50% 0%, rgba(255,255,255,0.85) 0%, rgba(248,242,232,0.5) 55%, rgba(233,241,249,0.4) 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(201, 169, 110, 0.28);
       box-shadow:
-        0 1px 0 rgba(255,255,255,0.7) inset,
-        0 0 0 6px rgba(255,255,255,0.45),
-        0 0 0 7px rgba(201,169,110,0.22),
-        0 22px 50px -24px rgba(61, 47, 30, 0.22);
+        0 1px 0 rgba(255,255,255,0.6) inset,
+        0 0 0 4px rgba(255,255,255,0.4),
+        0 0 0 5px rgba(201,169,110,0.16),
+        0 14px 30px -20px rgba(61, 47, 30, 0.18);
       position: relative;
     }
     /* Floreios SVG nos cantos superiores */
@@ -315,29 +315,29 @@
     .countdown-module::after {
       content: "";
       position: absolute;
-      top: 14px;
-      width: 44px; height: 22px;
+      top: 9px;
+      width: 30px; height: 14px;
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      opacity: 0.75;
+      opacity: 0.7;
       pointer-events: none;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 32' fill='none' stroke='%23c9a96e' stroke-width='1.2' stroke-linecap='round'><path d='M2 16 H46'/><circle cx='52' cy='16' r='2.2' fill='%23c9a96e' stroke='none'/><path d='M60 16 q4 -8 12 -6'/><path d='M60 16 q4 8 12 6'/><path d='M46 16 q-6 -7 -14 -4'/><path d='M46 16 q-6 7 -14 4'/></svg>");
     }
-    .countdown-module::before { left: 18px; }
-    .countdown-module::after  { right: 18px; transform: scaleX(-1); }
+    .countdown-module::before { left: 12px; }
+    .countdown-module::after  { right: 12px; transform: scaleX(-1); }
 
     @supports (backdrop-filter: blur(10px)) {
       .countdown-module { backdrop-filter: blur(10px); }
     }
     .countdown-module-title {
-      font-size: 1.55rem;
+      font-size: 1.1rem;
       color: var(--blue-navy);
-      margin-bottom: 16px;
-      opacity: 0.95;
+      margin-bottom: 10px;
+      opacity: 0.9;
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       width: 100%;
       justify-content: center;
     }
@@ -345,51 +345,50 @@
     .countdown-module-title::after {
       content: "✦";
       flex: 0 0 auto;
-      font-size: 0.55rem;
+      font-size: 0.45rem;
       color: var(--gold);
-      opacity: 0.8;
+      opacity: 0.75;
     }
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
       position: relative;
-      padding: 8px 6px 6px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.35);
-      border-top: 1px solid rgba(201, 169, 110, 0.28);
-      border-bottom: 1px solid rgba(201, 169, 110, 0.28);
+      padding: 4px 4px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(201, 169, 110, 0.22);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.22);
     }
     .count-item {
       background: transparent;
       border: none;
-      border-radius: 10px;
-      padding: 12px 5px 10px;
+      border-radius: 8px;
+      padding: 6px 4px 5px;
       text-align: center;
       transition: all 0.4s ease;
       box-shadow: none;
       position: relative;
     }
-    /* Separadores verticais discretos entre os blocos */
     .count-item + .count-item::before {
       content: "";
       position: absolute;
       left: 0; top: 22%;
       width: 1px; height: 56%;
-      background: linear-gradient(180deg, transparent, rgba(201,169,110,0.45), transparent);
+      background: linear-gradient(180deg, transparent, rgba(201,169,110,0.4), transparent);
     }
     .count-item strong {
       display: block;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.1rem; line-height: 1;
+      font-size: 1.4rem; line-height: 1;
       color: var(--blue-navy);
       font-weight: 300;
       letter-spacing: 0.5px;
       font-feature-settings: "lnum";
     }
     .count-item span {
-      display: block; margin-top: 8px;
-      font-size: 0.6rem; letter-spacing: 2.5px;
+      display: block; margin-top: 5px;
+      font-size: 0.5rem; letter-spacing: 2px;
       text-transform: uppercase; color: var(--blue-dusty);
       font-weight: 400;
     }
