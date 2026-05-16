@@ -81,11 +81,16 @@
     /* ── NAV ── */
     .site-nav {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      background: rgba(248,242,232,0.95); backdrop-filter: blur(10px);
+      background: rgba(248,242,232,0.95);
       padding: 14px 40px;
       display: flex; justify-content: space-between; align-items: center;
       border-bottom: 1px solid var(--gold-light);
-      transition: box-shadow 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+    @supports (backdrop-filter: blur(10px)) {
+      .site-nav { backdrop-filter: blur(10px); }
     }
     .site-nav.scrolled {
       box-shadow: 0 4px 20px rgba(61, 47, 30, 0.08);
@@ -227,8 +232,9 @@
       max-width: 940px; margin: 0 auto;
     }
     .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: opacity, transform;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .section-title {
@@ -270,14 +276,16 @@
     #countdown .section-sub  { color: var(--blue-dusty); }
     #countdown .countdown-box {
       max-width: 800px; margin: 0 auto;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 20px;
-      border: 1px solid rgba(201, 169, 110, 0.2);
-      box-shadow: 0 10px 30px rgba(61, 47, 30, 0.03);
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      box-shadow: 0 10px 30px rgba(61, 47, 30, 0.02);
       padding: 40px 30px;
       position: relative;
       z-index: 1;
+    }
+    @supports (backdrop-filter: blur(12px)) {
+      #countdown .countdown-box { backdrop-filter: blur(12px); }
     }
     .countdown-grid {
       display: grid;
@@ -388,12 +396,13 @@
     }
     .tl-card {
       background: #ffffff;
-      border: 1px solid rgba(165, 184, 204, 0.15);
+      border: 1px solid rgba(165, 184, 204, 0.12);
       border-left: 2px solid var(--gold);
       border-radius: 8px;
       padding: 20px 22px;
-      box-shadow: 0 4px 12px rgba(61, 47, 30, 0.03);
-      transition: all 0.4s ease;
+      box-shadow: 0 4px 12px rgba(61, 47, 30, 0.02);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
     }
     .tl-card:hover { 
       transform: translateX(5px);
@@ -1260,11 +1269,18 @@
   function initProgressBar() {
     const bar = document.getElementById('progress-bar');
     if (!bar) return;
+    let ticking = false;
     function update() {
-      const scrollTop = window.scrollY;
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const pct  = docH > 0 ? Math.min(100, (scrollTop / docH) * 100) : 0;
-      bar.style.width = pct + '%';
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docH = document.documentElement.scrollHeight - window.innerHeight;
+          const pct  = docH > 0 ? Math.min(100, (scrollTop / docH) * 100) : 0;
+          bar.style.width = pct + '%';
+          ticking = false;
+        });
+        ticking = true;
+      }
     }
     window.addEventListener('scroll', update, { passive: true });
   }
@@ -1276,10 +1292,17 @@
     const btn = document.getElementById('back-to-top');
     const nav = document.getElementById('site-nav');
     if (!btn) return;
+    let navTicking = false;
     function onScroll() {
-      const show = window.scrollY > 360;
-      btn.classList.toggle('visible', show);
-      nav.classList.toggle('scrolled', show);
+      if (!navTicking) {
+        window.requestAnimationFrame(() => {
+          const show = window.scrollY > 360;
+          btn.classList.toggle('visible', show);
+          nav.classList.toggle('scrolled', show);
+          navTicking = false;
+        });
+        navTicking = true;
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     btn.addEventListener('click', (e) => {
@@ -1322,27 +1345,25 @@
       };
     }
 
-    const pts = Array.from({ length: 38 }, mkParticle);
+    const pts = Array.from({ length: 25 }, mkParticle);
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      pts.forEach(p => {
-        /* twinkling */
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i];
         p.a += p.da * p.dir;
         if (p.a >= p.base + 0.12 || p.a <= p.base - 0.04) p.dir *= -1;
 
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.y < -8)               { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
-        if (p.x < -8)               p.x = canvas.width + 8;
-        if (p.x > canvas.width + 8) p.x = -8;
-
+        if (p.y < -8) { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
+        
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + Math.max(0, p.a) + ')';
+        ctx.fillStyle = p.color + (p.a < 0 ? 0 : p.a) + ')';
         ctx.fill();
-      });
+      }
       requestAnimationFrame(draw);
     }
     draw();
@@ -1484,22 +1505,24 @@
   /* ─────────────────────────────────────────────
      REVEAL AO ROLAR (IntersectionObserver)
   ───────────────────────────────────────────── */
-  function ativarRevelacaoAoRolar() {
-    const alvos = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || alvos.length === 0) {
-      alvos.forEach(el => el.classList.add('visible'));
-      return;
-    }
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+    function ativarRevelacaoAoRolar() {
+      const alvos = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || alvos.length === 0) {
+        alvos.forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const observer = new IntersectionObserver(entries => {
+        for (let i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            entries[i].target.classList.add('visible');
+            observer.unobserve(entries[i].target);
+          }
         }
-      });
-    }, { threshold: 0.12 });
-    alvos.forEach(el => observer.observe(el));
-  }
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      for (let i = 0; i < alvos.length; i++) {
+        observer.observe(alvos[i]);
+      }
+    }
 
   /* ─────────────────────────────────────────────
      MAPA LAZY (carrega iframe só ao entrar na viewport)
