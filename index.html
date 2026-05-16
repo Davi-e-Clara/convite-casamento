@@ -757,6 +757,24 @@
     }
     .btn-submit:active { transform: translateY(0); }
     .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    
+    .btn-secondary {
+      width: 100%; padding: 14px;
+      background: transparent;
+      color: var(--blue-navy);
+      border: 1px solid var(--blue-dusty); border-radius: 8px;
+      font-family: 'Jost', sans-serif; font-size: 0.8rem;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer; margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(139, 167, 199, 0.05);
+      border-color: var(--blue-navy);
+      color: var(--blue-navy);
+    }
+
     .rsvp-status {
       font-family: 'Jost', sans-serif; font-size: 0.9rem;
       text-align: center; margin: 12px 0 0; min-height: 1.4em;
@@ -929,6 +947,9 @@
         <p id="rsvp-status-inicial" class="rsvp-status" aria-live="polite"></p>
         <button type="button" class="btn-submit" id="btn-enviar-inicial" onclick="enviarConfirmacaoInicial()">
           Confirmar Presença
+        </button>
+        <button type="button" class="btn-secondary" id="btn-ja-confirmei" onclick="revelarManualmente()">
+          Já confirmei minha presença!
         </button>
       </div>
 
@@ -1460,6 +1481,24 @@
   /* ─────────────────────────────────────────────
      RSVP INICIAL E REVELAÇÃO
   ───────────────────────────────────────────── */
+  function revelarSite() {
+    document.body.classList.add('content-revealed');
+    // Reinicializar funções agora que o conteúdo está visível
+    iniciarContagemRegressiva();
+    ativarRevelacaoAoRolar();
+    initNavMobile();
+    initLazyMap();
+    initProgressBar();
+    initBackToTop();
+    initHeroParticles();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function revelarManualmente() {
+    localStorage.setItem('casamento_confirmado', 'true');
+    revelarSite();
+  }
+
   async function enviarConfirmacaoInicial() {
     const statusEl  = document.getElementById('rsvp-status-inicial');
     const btn       = document.getElementById('btn-enviar-inicial');
@@ -1493,16 +1532,8 @@
       if (presenca.startsWith('Sim')) launchConfetti();
 
       setTimeout(() => {
-        document.body.classList.add('content-revealed');
-        // Reinicializar funções agora que o conteúdo está visível
-        iniciarContagemRegressiva();
-        ativarRevelacaoAoRolar();
-        initNavMobile();
-        initLazyMap();
-        initProgressBar();
-        initBackToTop();
-        initHeroParticles();
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        localStorage.setItem('casamento_confirmado', 'true');
+        revelarSite();
       }, 1500);
 
     } catch (e) {
@@ -1514,10 +1545,16 @@
   }
 
   /* ─────────────────────────────────────────────
-     INIT (Apenas se já revelado, ou aguarda RSVP)
+     LOGICA DE PERSISTÊNCIA E INICIALIZAÇÃO
   ───────────────────────────────────────────── */
-  // Se o usuário já confirmou antes (opcional: usar localStorage), poderia revelar direto.
-  // Por padrão, aguardamos o clique no botão inicial.
+  function verificarRevelacao() {
+    if (localStorage.getItem('casamento_confirmado') === 'true') {
+      revelarSite();
+    }
+  }
+
+  // Executar a verificação ao carregar a página
+  document.addEventListener('DOMContentLoaded', verificarRevelacao);
 </script>
 
 </body>
