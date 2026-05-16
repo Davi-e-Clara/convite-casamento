@@ -897,9 +897,177 @@
       .timeline-dot-col { justify-content: flex-start; }
       .lightbox-nav { display: none; }
     }
+
+    /* ===== LISTA DE PRESENTES (adaptado do chá de panela) ===== */
+    #presentes { max-width: 1100px; }
+    #presentes .verse-block {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 36px 40px 32px;
+      border: 1px solid var(--gold-light);
+      box-shadow: 0 4px 24px rgba(61, 90, 128, 0.06);
+      margin-bottom: 36px;
+      position: relative;
+    }
+    #presentes .verse-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem; line-height: 0.6;
+      color: var(--gold); opacity: 0.25;
+      position: absolute; top: 28px; left: 32px;
+      pointer-events: none; user-select: none;
+    }
+    #presentes .verse-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem; font-style: italic;
+      line-height: 1.85; color: var(--brown);
+      border: none; padding: 0 0 0 8px;
+      margin: 0 0 10px;
+    }
+    #presentes .verse-ref {
+      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 22px;
+      padding-left: 8px;
+    }
+    #presentes .verse-body {
+      font-size: 0.92rem; line-height: 1.8; color: var(--brown-light);
+      padding-left: 14px;
+      border-left: 2px solid var(--gold-light);
+    }
+
+    .palette-block {
+      background: var(--white); border-radius: 14px;
+      padding: 28px 32px 30px;
+      border: 1px solid var(--gold-light);
+      box-shadow: 0 4px 20px rgba(61, 90, 128, 0.05);
+      margin-bottom: 40px;
+    }
+    .palette-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .palette-label {
+      font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--blue-navy); font-weight: 500; white-space: nowrap;
+    }
+    .palette-rule { flex: 1; height: 1px; background: var(--gold-light); }
+    .palette-swatches { display: flex; flex-wrap: wrap; gap: 18px 24px; justify-content: center; }
+    .swatch-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .swatch {
+      width: 44px; height: 44px; border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(61, 90, 128, 0.15);
+    }
+    .swatch-item span {
+      font-size: 0.65rem; letter-spacing: 0.5px; color: var(--brown-light);
+      text-align: center; line-height: 1.2;
+    }
+
+    .category-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: var(--blue-navy); font-weight: 400;
+      margin: 44px 0 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--gold-light);
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 22px;
+    }
+    .gift-card {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid var(--gold-light);
+      box-shadow: 0 3px 16px rgba(61, 90, 128, 0.06);
+      transition: transform .22s ease, box-shadow .22s ease;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .gift-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(61, 90, 128, 0.14); }
+    .gift-card-media {
+      aspect-ratio: 1;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--blue-light) 100%);
+      border-bottom: 1px solid var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .gift-card-media::after {
+      content: 'Imagem meramente ilustrativa';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 5px 8px;
+      background: rgba(61, 47, 30, 0.42);
+      color: rgba(248, 242, 232, 0.9);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.08em;
+      text-align: center; pointer-events: none;
+      backdrop-filter: blur(2px);
+    }
+    .gift-card-media img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
+    .gift-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; gap: 10px; }
+    .gift-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 400; color: var(--blue-navy);
+      margin: 0; line-height: 1.3;
+    }
+    .gift-btn-group { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+    .gift-buy {
+      margin-top: auto;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white); background: var(--gold);
+      border-radius: 8px; padding: 12px 16px; min-height: 44px;
+      box-shadow: 0 3px 10px rgba(201, 169, 110, 0.32);
+      transition: background .25s, box-shadow .2s, transform .15s;
+      border: none; cursor: pointer;
+    }
+    .gift-buy:hover { background: #b08f55; box-shadow: 0 5px 16px rgba(201, 169, 110, 0.45); }
+    .gift-buy:active { transform: scale(0.97); }
+    .gift-buy svg { flex-shrink: 0; opacity: 0.95; }
+    .gift-buy--pending { /* still actionable; kept distinct color */
+      background: var(--gold);
+    }
+    .gift-btn-group .gift-buy { margin-top: 0; }
+    .gift-buy--participate {
+      background: transparent; color: #1f8a3a;
+      border: 1.5px solid #25a244; box-shadow: none;
+    }
+    .gift-buy--participate:hover { background: #25a244; color: var(--white); box-shadow: 0 5px 16px rgba(37, 162, 68, 0.35); }
+    .gift-received {
+      background: var(--sage); color: var(--white);
+      box-shadow: 0 3px 10px rgba(148, 166, 148, 0.32);
+      cursor: default; pointer-events: none;
+    }
+    .gift-wa-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: white; text-decoration: none;
+      padding: 14px 28px; border-radius: 10px;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+      transition: transform .15s, box-shadow .2s;
+    }
+    .gift-wa-main:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+
+    @media (max-width: 640px) {
+      #presentes .verse-block { padding: 28px 22px 24px; }
+      #presentes .verse-mark { font-size: 4.5rem; top: 22px; left: 18px; }
+      .palette-block { padding: 22px 20px 24px; }
+      .palette-swatches { gap: 14px 18px; }
+      .swatch { width: 38px; height: 38px; }
+      .gift-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+      .gift-card-body { padding: 14px; }
+      .gift-name { font-size: 0.98rem; }
+      .gift-buy { font-size: 0.66rem; padding: 11px 12px; }
+      .category-title { font-size: 1.25rem; margin: 32px 0 16px; }
+    }
   </style>
 </head>
 <body>
+
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="ico-presentear" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20 7h-3.1a2.5 2.5 0 0 0 .6-1.6A2.4 2.4 0 0 0 15.1 3c-1.2 0-2 .6-3.1 2.1C10.9 3.6 10.1 3 8.9 3a2.4 2.4 0 0 0-2.4 2.4A2.5 2.5 0 0 0 7.1 7H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1Zm-5.1-2a.9.9 0 0 1 .9.9c0 .6-.5 1.1-1.1 1.1H13c.5-1.3 1-2 1.9-2Zm-7.7.9a.9.9 0 0 1 .9-.9c.9 0 1.4.7 1.9 2H8.3a1.1 1.1 0 0 1-1.1-1.1ZM5 9h6v2H5Zm2 4h4v7H7Zm6 7v-7h4v7Zm6-9h-6V9h6Z"/>
+    </symbol>
+  </defs>
+</svg>
 
 <!-- Barra de progresso de leitura -->
 <div id="progress-bar" role="progressbar" aria-hidden="true"></div>
@@ -921,6 +1089,7 @@
   <ul id="nav-menu" class="nav-menu">
     <li><a href="#cerimonia">O Dia</a></li>
     <li><a href="#confirmacao">Confirmar</a></li>
+    <li><a href="#presentes">Presentes</a></li>
   </ul>
 </nav>
 
@@ -1120,6 +1289,546 @@
 </section>
 
 
+
+
+<!-- LISTA DE PRESENTES -->
+<section id="presentes" class="reveal">
+  <div class="section-title">Lista de Presentes</div>
+  <div class="section-sub">Um gesto de carinho para o nosso lar</div>
+
+  <div class="verse-block">
+    <div class="verse-mark">"</div>
+    <blockquote class="verse-text">
+      Quando o Senhor restaurou a sorte de Sião, ficamos como quem sonha. Então a nossa boca se encheu de riso, e a nossa língua, de júbilo; então, entre as nações se dizia: <em>'Grandes coisas o Senhor tem feito por eles.'</em> Com efeito, grandes coisas fez o Senhor por nós; por isso, estamos alegres.
+    </blockquote>
+    <div class="verse-ref">Salmos 126:1–3</div>
+    <div class="verse-body">
+      Com alegria, partilhamos com vocês o que Deus tem feito em nossas vidas. Abaixo vocês encontrarão nossa lista de presentes. As imagens são apenas representativas — deixamos também uma cartela de cores para ajudar.
+      <br><br>
+      Caso você não consiga nos presentear, isso não restringe sua participação nesse momento com a gente. Temos visto a bondade do grande Deus e te convidamos a ver como Ele tem agido com graça, misericórdia e fidelidade conosco.
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-bottom: 40px;">
+    <a class="gift-wa-main" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20lista%20de%20presentes." target="_blank" rel="noopener noreferrer">
+      💬 Falar com os Noivos no WhatsApp
+    </a>
+  </div>
+
+  <div class="palette-block">
+    <div class="palette-header">
+      <span class="palette-label">Cartela de Cores Sugerida</span>
+      <div class="palette-rule"></div>
+    </div>
+    <div class="palette-swatches">
+      <div class="swatch-item"><div class="swatch" style="background-color:#000000;"></div><span>Preto</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#ffffff; border:1px solid var(--gold-light);"></div><span>Branco</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#f5f5f5; border:1px solid var(--gold-light);"></div><span>Branco Salpicado</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#f5ede0;"></div><span>Bege</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#dcc9b6;"></div><span>Latte</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#c2b2a3;"></div><span>Mel</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#6f4e37;"></div><span>Marrom Café</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#a0522d;"></div><span>Terracota</span></div>
+      <div class="swatch-item"><div class="swatch" style="background-color:#808000;"></div><span>Verde Oliva</span></div>
+    </div>
+  </div>
+
+  <div class="category-title">🍳 Cozinha</div>
+  <div class="gift-grid">
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/armario-cozinha.webp" alt="Armário de Cozinha" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Armário de Cozinha</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Arm%C3%A1rio%20de%20Cozinha" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+          <a class="gift-buy gift-buy--participate" href="https://wa.me/5585986657389?text=Quero%20ajudar%20a%20comprar%20Arm%C3%A1rio%20de%20Cozinha%21%20Pode%20me%20passar%20o%20pix%20de%20voc%C3%AAs%3F" target="_blank" rel="noopener noreferrer">💰 <span>Participar com um valor</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/geladeira.webp" alt="Geladeira" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Geladeira</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Geladeira" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+          <a class="gift-buy gift-buy--participate" href="https://wa.me/5585986657389?text=Quero%20ajudar%20a%20comprar%20Geladeira%21%20Pode%20me%20passar%20o%20pix%20de%20voc%C3%AAs%3F" target="_blank" rel="noopener noreferrer">💰 <span>Participar com um valor</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/fogao.webp" alt="Fogão" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Fogão</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/mesa.webp" alt="Mesa" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Mesa</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/jogo-panelas.webp" alt="Jogo de Panelas" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Panelas</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/jogo-talheres.webp" alt="Jogo de Talheres" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Talheres</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/jogo-copos.webp" alt="Jogo de Copos" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Copos</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/jogo-xicaras.webp" alt="Jogo de Xícaras" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Xícaras</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/jogo-pratos.webp" alt="Jogo de Pratos" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Pratos</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Jogo%20de%20Pratos" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/garrafas-agua.webp" alt="Garrafas para Água" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Garrafas para Água</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/potes-condimentos.webp" alt="Potes para Condimentos (Kit)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Potes para Condimentos (Kit)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/liquidificador.webp" alt="Liquidificador" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Liquidificador</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/cafeteira.webp" alt="Cafeteira Elétrica" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Cafeteira Elétrica</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/mixer.webp" alt="Mixer" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Mixer</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/panela-pressao.webp" alt="Panela de Pressão" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Panela de Pressão</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Panela%20de%20Press%C3%A3o" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/espremedor.webp" alt="Espremedor" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Espremedor</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Espremedor" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/assadeiras-vidro.webp" alt="Travessas de Servir" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Travessas de Servir</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Travessas%20de%20Servir" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/garrafa-cafe.webp" alt="Garrafa de Café" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Garrafa de Café</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/ralador.webp" alt="Ralador de Cozinha" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Ralador de Cozinha</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/sanduicheira.webp" alt="Sanduicheira" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Sanduicheira</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/frigideiras.webp" alt="Kit de Frigideiras" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Kit de Frigideiras</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/airfryer.webp" alt="Airfryer" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Airfryer</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/forno-eletrico.webp" alt="Forno Elétrico" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Forno Elétrico</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/colheres-servir.webp" alt="Jogo de Colheres para Servir" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Colheres para Servir</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/escorredor-macarrao.webp" alt="Escorredor de Macarrão" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Escorredor de Macarrão</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/peneira.webp" alt="Peneira" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Peneira</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/tabua-corte.webp" alt="Tábua de Corte" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Tábua de Corte</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20T%C3%A1bua%20de%20Corte" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/panos-prato.webp" alt="Panos de Prato" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Panos de Prato</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Panos%20de%20Prato" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/escorredor-louca.webp" alt="Escorredor de Louça" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Escorredor de Louça</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Escorredor%20de%20Lou%C3%A7a" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="category-title">🛋️ Sala</div>
+  <div class="gift-grid">
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/sofa.webp" alt="Sofá" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Sofá</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/rack.webp" alt="Rack da Sala" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Rack da Sala</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="category-title">🛏️ Quarto</div>
+  <div class="gift-grid">
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/cama-casal.webp" alt="Cama do Casal" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Cama do Casal</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/jogo-lencois.webp" alt="Jogo de Lençóis" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Jogo de Lençóis</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Jogo%20de%20Len%C3%A7%C3%B3is" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/travesseiro.webp" alt="Travesseiro (unidade)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Travesseiro (unidade)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Travesseiro%20%28unidade%29" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/guarda-roupa.webp" alt="Guarda-roupa" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Guarda-roupa</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Guarda-roupa" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+          <a class="gift-buy gift-buy--participate" href="https://wa.me/5585986657389?text=Quero%20ajudar%20a%20comprar%20Guarda-roupa%21%20Pode%20me%20passar%20o%20pix%20de%20voc%C3%AAs%3F" target="_blank" rel="noopener noreferrer">💰 <span>Participar com um valor</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/arara-roupa.webp" alt="Arara para Roupa" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Arara para Roupa</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Arara%20para%20Roupa" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/ferro-de-passar.webp" alt="Ferro de Passar" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Ferro de Passar</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/tabua-de-passar.webp" alt="Tábua de Passar" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Tábua de Passar</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20T%C3%A1bua%20de%20Passar" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="category-title">🧺 Lavanderia</div>
+  <div class="gift-grid">
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/maquina-lavar.webp" alt="Máquina de Lavar" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Máquina de Lavar</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy gift-received" aria-disabled="true"><span>Já ganhamos, graças a Deus</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/cesto-roupa-suja.webp" alt="Cesto de Roupa Suja (Kit c/ 2)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Cesto de Roupa Suja (Kit c/ 2)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Cesto%20de%20Roupa%20Suja%20%28Kit%20c/%202%29" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="category-title">📚 Escritório</div>
+  <div class="gift-grid">
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/escrivaninha.webp" alt="Escrivaninha" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Escrivaninha</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Escrivaninha" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+          <a class="gift-buy gift-buy--participate" href="https://wa.me/5585986657389?text=Quero%20ajudar%20a%20comprar%20Escrivaninha%21%20Pode%20me%20passar%20o%20pix%20de%20voc%C3%AAs%3F" target="_blank" rel="noopener noreferrer">💰 <span>Participar com um valor</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/cadeira-escritorio.webp" alt="Cadeira de Escritório" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Cadeira de Escritório</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Cadeira%20de%20Escrit%C3%B3rio" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/estante-livros.webp" alt="Estante para Livros" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Estante para Livros</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Estante%20para%20Livros" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/cesto-lixo-escritorio.webp" alt="Cesto de Lixo" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Cesto de Lixo</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Cesto%20de%20Lixo" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="category-title">🛁 Banheiro</div>
+  <div class="gift-grid">
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/toalhas-banho.webp" alt="Toalhas de Banho (Kit c/ 2)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Toalhas de Banho (Kit c/ 2)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Toalhas%20de%20Banho%20%28Kit%20c/%202%29" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/toalha-mao.webp" alt="Toalha de Mão (Kit c/ 4)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Toalha de Mão (Kit c/ 4)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Toalha%20de%20M%C3%A3o%20%28Kit%20c/%204%29" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/tapete-banheiro.webp" alt="Tapete para Banheiro (Kit c/ 4)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Tapete para Banheiro (Kit c/ 4)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Tapete%20para%20Banheiro%20%28Kit%20c/%204%29" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/cesto-lixo-banheiro.webp" alt="Cesto de Lixo" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Cesto de Lixo</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Cesto%20de%20Lixo" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/baldes.webp" alt="Baldes (Kit c/ 2)" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Baldes (Kit c/ 2)</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Baldes%20%28Kit%20c/%202%29" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/acessorios-banheiro.webp" alt="Acessórios de Banheiro 1" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Acessórios de Banheiro 1</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Acess%C3%B3rios%20de%20Banheiro%201" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/acessorios-banheiro2.webp" alt="Acessórios de Banheiro 2" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Acessórios de Banheiro 2</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Acess%C3%B3rios%20de%20Banheiro%202" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="gift-card reveal">
+      <div class="gift-card-media"><img loading="lazy" src="images/espelho-banheiro.webp" alt="Espelho" width="400" height="400" decoding="async"></div>
+      <div class="gift-card-body">
+        <h3 class="gift-name">Espelho</h3>
+        <div class="gift-btn-group">
+          <a class="gift-buy" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Gostaria%20de%20presentear%20voc%C3%AAs%20com%3A%20Espelho" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#ico-presentear"/></svg><span>Presentear</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
 <footer>
   <div class="footer-names">Davi &amp; Clara</div>
