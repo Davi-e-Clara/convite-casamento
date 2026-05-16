@@ -699,21 +699,43 @@
       position: relative;
     }
     .rsvp-container {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-      align-items: center;
-      max-width: 1000px;
+      max-width: 600px;
       margin: 0 auto;
-    }
-    .rsvp-info {
-      padding-right: 20px;
     }
     .rsvp-box {
       background: var(--white); border-radius: 24px;
       padding: 50px; border: 1px solid rgba(165, 184, 204, 0.1);
       box-shadow: 0 20px 60px rgba(61, 47, 30, 0.06);
       position: relative;
+    }
+    .rsvp-footer-note {
+      text-align: center;
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+    .rsvp-footer-note .cursive {
+      font-family: 'Parisienne', cursive;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .rsvp-footer-note p {
+      color: var(--brown-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 450px;
+      margin: 0 auto 20px;
+    }
+    .rsvp-whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue-navy);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
     .rsvp-box::before {
       content: 'RSVP';
@@ -874,9 +896,9 @@
       .countdown-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .gallery-grid { columns: 1; }
       .testemunho-grid { grid-template-columns: 1fr; }
-      .rsvp-container { grid-template-columns: 1fr; gap: 30px; }
-      .rsvp-info { padding-right: 0; text-align: center; }
-      .rsvp-info div { justify-content: center; }
+      .rsvp-container { max-width: 100%; }
+      .rsvp-box { padding: 35px 25px; }
+      .rsvp-footer-note .cursive { font-size: 1.5rem; }
       /* Timeline mobile */
       .timeline::before { left: 16px; transform: none; }
       .timeline-item {
@@ -949,17 +971,6 @@
   <div class="section-sub">Sua presença é muito especial para nós</div>
   
   <div class="rsvp-container">
-    <div class="rsvp-info reveal">
-      <div style="font-family: 'Parisienne', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px;">Ficaremos muito felizes em ter você conosco!</div>
-      <p style="color: var(--brown-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
-        Para nos ajudar na organização desse dia, confirme sua presença até o dia <strong>10 de Junho de 2026</strong>.
-      </p>
-      <a href="https://wa.me/5585986657389?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20casamento." target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 15px; color: var(--blue-navy); font-weight: 500; text-decoration: none; transition: color 0.3s ease;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span>Dúvidas? Entre em contato pelo WhatsApp</span>
-      </a>
-    </div>
-
     <div class="rsvp-box reveal">
       <p class="rsvp-note">
         "Alegrem-se com os que se alegram"
@@ -997,6 +1008,17 @@
       <button type="button" class="btn-submit" id="btn-enviar" onclick="enviarConfirmacao()">
         Confirmar Presença
       </button>
+    </div>
+
+    <div class="rsvp-footer-note reveal">
+      <span class="cursive">Ficaremos muito felizes em ter você conosco!</span>
+      <p>
+        Para nos ajudar na organização desse dia, confirme sua presença até o dia <strong>10 de Junho de 2026</strong>.
+      </p>
+      <a href="https://wa.me/5585986657389?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20casamento." target="_blank" rel="noopener noreferrer" class="rsvp-whatsapp-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Dúvidas? Entre em contato pelo WhatsApp</span>
+      </a>
     </div>
   </div>
 </section>
