@@ -1057,9 +1057,284 @@
       .gift-buy { font-size: 0.66rem; padding: 11px 12px; }
       .category-title { font-size: 1.25rem; margin: 32px 0 16px; }
     }
+  
+    /* ─────────────────────────────────────────────
+       MELHORIAS PROFISSIONAIS — pacote completo
+    ───────────────────────────────────────────── */
+
+    /* Tipografia: balanceamento e quebras elegantes */
+    h1, h2, h3,
+    .section-title, .section-sub,
+    .hero-text .names, .hero-text .tagline,
+    .countdown-module-title, .category-title {
+      text-wrap: balance;
+    }
+    p, blockquote, .verse-text, .verse-body {
+      text-wrap: pretty;
+    }
+
+    /* Performance: renderização preguiçosa de seções longas */
+    #presentes .gift-grid,
+    #testemunho {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 600px;
+    }
+
+    /* Skip link acessível */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      background: var(--blue-navy);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    .skip-link:focus {
+      left: 16px;
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    /* Reveal refinado (fade-up) com respeito a reduced-motion */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.visible {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* Nav: estado ativo (scroll-spy) */
+    .site-nav .nav-menu a.active {
+      color: var(--gold);
+    }
+    .site-nav .nav-menu a.active::after {
+      width: 100%;
+    }
+
+    /* Separador ornamental entre seções */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 30px 20px 10px;
+      opacity: 0.7;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    }
+    .section-divider .ornament {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+    }
+
+    /* Card de presente: polimento (hover dourado + badge fita) */
+    .gift-card {
+      position: relative;
+      transition: transform 0.35s cubic-bezier(.2,.7,.3,1.2),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+      border: 1px solid transparent;
+    }
+    .gift-card:hover {
+      border-color: rgba(201, 169, 110, 0.45);
+      box-shadow: 0 14px 36px rgba(61, 90, 128, 0.18),
+                  0 0 0 1px rgba(201, 169, 110, 0.15) inset;
+    }
+    .gift-card.received {
+      opacity: 0.78;
+    }
+    .gift-card.received .gift-card-media::before {
+      content: '✓ Já ganhamos';
+      position: absolute;
+      top: 12px; left: -32px;
+      transform: rotate(-30deg);
+      background: linear-gradient(135deg, var(--sage), #7f9a7f);
+      color: #fff;
+      padding: 4px 36px;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      z-index: 2;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+    }
+
+    /* Barra de filtros da lista de presentes */
+    .gift-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      max-width: 720px;
+      margin: 0 auto 28px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--gold-light);
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+    }
+    .gift-search {
+      flex: 1 1 200px;
+      min-width: 0;
+      padding: 10px 14px;
+      border: 1px solid var(--gold-light);
+      background: var(--white);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--brown);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .gift-search:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.18);
+    }
+    .gift-filter-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--gold-light);
+      background: transparent;
+      color: var(--brown-light);
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .gift-filter-btn:hover { color: var(--brown); border-color: var(--gold); }
+    .gift-filter-btn.active {
+      background: var(--blue-navy);
+      color: #fff;
+      border-color: var(--blue-navy);
+    }
+    .gift-counter {
+      width: 100%;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--blue-navy);
+      font-size: 1rem;
+      margin-top: 4px;
+    }
+    .gift-counter strong { color: var(--gold); font-style: normal; }
+
+    /* Empty state quando filtro não acha nada */
+    .gift-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--brown-light);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+    }
+
+    /* Botão de compartilhar */
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 10px;
+      padding: 10px 18px;
+      background: transparent;
+      color: var(--blue-navy);
+      border: 1px solid var(--blue-navy);
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .share-btn:hover {
+      background: var(--blue-navy);
+      color: #fff;
+    }
+
+    /* Back-to-top: visibilidade controlada + safe area */
+    .back-to-top {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(8px);
+      padding-bottom: calc(0px + env(safe-area-inset-bottom, 0px));
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* WhatsApp float: respeita safe area no iPhone */
+    .whatsapp-float {
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
   </style>
+
+  <!-- Preload da imagem LCP (hero) -->
+  <link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high">
+
+  <!-- JSON-LD: evento para SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Casamento de Davi Carvalho e Clara Magalhães",
+    "startDate": "2026-06-26T19:30:00-03:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Fortaleza, CE",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Fortaleza",
+        "addressRegion": "CE",
+        "addressCountry": "BR"
+      }
+    },
+    "description": "Convite do casamento de Davi e Clara — 26 de junho de 2026.",
+    "image": "https://davi-e-clara.github.io/convite-casamento/images/foto1.jpg",
+    "organizer": {
+      "@type": "Person",
+      "name": "Davi & Clara"
+    }
+  }
+  </script>
+
 </head>
 <body>
+<a href="#main-content" class="skip-link">Pular para o conteúdo</a>
 
 <svg style="display:none" aria-hidden="true">
   <defs>
@@ -1256,6 +1531,8 @@
 
 
 
+
+<div class="section-divider" aria-hidden="true"><span class="ornament">✦</span></div>
 <!-- TESTEMUNHO -->
 <section id="testemunho" class="reveal">
   <div class="section-title">Testemunho</div>
@@ -1291,6 +1568,8 @@
 
 
 
+
+<div class="section-divider" aria-hidden="true"><span class="ornament">❦</span></div>
 <!-- LISTA DE PRESENTES -->
 <section id="presentes" class="reveal">
   <div class="section-title">Lista de Presentes</div>
@@ -1313,11 +1592,14 @@
     <a class="gift-wa-main" href="https://wa.me/5585986657389?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20lista%20de%20presentes." target="_blank" rel="noopener noreferrer">
       💬 Falar com os Noivos no WhatsApp
     </a>
+    <button type="button" class="share-btn" id="share-btn" aria-label="Compartilhar convite">
+      <span aria-hidden="true">↗</span> Compartilhar convite
+    </button>
   </div>
 
   <div class="palette-block">
     <div class="palette-header">
-      <span class="palette-label">Cartela de Cores Sugerida Para Os Presentes</span>
+      <span class="palette-label">Cartela de Cores Sugerida</span>
       <div class="palette-rule"></div>
     </div>
     <div class="palette-swatches">
@@ -1330,6 +1612,16 @@
       <div class="swatch-item"><div class="swatch" style="background-color:#6f4e37;"></div><span>Marrom Café</span></div>
       <div class="swatch-item"><div class="swatch" style="background-color:#a0522d;"></div><span>Terracota</span></div>
       <div class="swatch-item"><div class="swatch" style="background-color:#808000;"></div><span>Verde Oliva</span></div>
+    </div>
+  </div>
+
+
+  <div class="gift-controls" role="region" aria-label="Filtrar presentes">
+    <input type="search" class="gift-search" id="gift-search" placeholder="Buscar presente..." aria-label="Buscar presente">
+    <button type="button" class="gift-filter-btn active" data-filter="all">Todos</button>
+    <button type="button" class="gift-filter-btn" data-filter="available">Disponíveis</button>
+    <div class="gift-counter" id="gift-counter" aria-live="polite">
+      <strong id="gift-available-count">0</strong> de <strong id="gift-total-count">0</strong> presentes ainda disponíveis
     </div>
   </div>
 
@@ -2281,6 +2573,157 @@
 
   // Executar a verificação ao carregar a página
   document.addEventListener('DOMContentLoaded', verificarRevelacao);
+
+
+  /* ─────────────────────────────────────────────
+     MELHORIAS — scroll-spy / filtro / share / etc.
+  ───────────────────────────────────────────── */
+  function initMelhorias() {
+    // -- Scroll-spy: destacar item ativo no nav
+    const navLinks = document.querySelectorAll('.site-nav .nav-menu a[href^="#"]');
+    const sections = Array.from(navLinks)
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+    if (sections.length) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            navLinks.forEach(a => a.classList.toggle(
+              'active',
+              a.getAttribute('href') === '#' + e.target.id
+            ));
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(s => spy.observe(s));
+    }
+
+    // -- Marcar gift-cards "recebidos" + contador
+    const cards = document.querySelectorAll('#presentes .gift-card');
+    let received = 0;
+    cards.forEach(card => {
+      if (card.querySelector('.gift-received')) {
+        card.classList.add('received');
+        received++;
+      }
+    });
+    const total = cards.length;
+    const avail = total - received;
+    const elAv = document.getElementById('gift-available-count');
+    const elTot = document.getElementById('gift-total-count');
+    if (elAv && elTot) { elAv.textContent = avail; elTot.textContent = total; }
+
+    // -- Filtro + busca
+    const search = document.getElementById('gift-search');
+    const filterBtns = document.querySelectorAll('.gift-filter-btn');
+    let currentFilter = 'all';
+
+    function applyFilter() {
+      const q = (search?.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const title = (card.querySelector('h3, .gift-title, strong, p')?.textContent || '').toLowerCase();
+        const alt = (card.querySelector('img')?.alt || '').toLowerCase();
+        const matchesSearch = !q || title.includes(q) || alt.includes(q);
+        const matchesFilter = currentFilter === 'all' ||
+          (currentFilter === 'available' && !card.classList.contains('received'));
+        const show = matchesSearch && matchesFilter;
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+      // Esconde título de categoria sem cards visíveis
+      document.querySelectorAll('#presentes .category-title').forEach(title => {
+        let next = title.nextElementSibling;
+        while (next && !next.classList.contains('gift-grid')) next = next.nextElementSibling;
+        if (!next) return;
+        const visible = next.querySelectorAll('.gift-card:not([style*="display: none"])').length;
+        title.style.display = visible > 0 ? '' : 'none';
+        next.style.display = visible > 0 ? '' : 'none';
+      });
+      // Empty state global
+      let empty = document.getElementById('gift-empty-msg');
+      if (visibleCount === 0) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.id = 'gift-empty-msg';
+          empty.className = 'gift-empty';
+          empty.textContent = 'Nenhum presente encontrado com esses critérios.';
+          document.querySelector('#presentes .gift-controls').after(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    }
+
+    search?.addEventListener('input', applyFilter);
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      applyFilter();
+    }));
+
+    // -- Botão de compartilhar (Web Share API com fallback)
+    const shareBtn = document.getElementById('share-btn');
+    shareBtn?.addEventListener('click', async () => {
+      const url = location.href.split('#')[0];
+      const shareData = {
+        title: 'Casamento Davi & Clara',
+        text: 'Estamos casando! 26 de junho de 2026. Confira o convite:',
+        url
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(url);
+          const original = shareBtn.innerHTML;
+          shareBtn.innerHTML = '✓ Link copiado!';
+          setTimeout(() => { shareBtn.innerHTML = original; }, 2000);
+        }
+      } catch (e) { /* usuário cancelou */ }
+    });
+
+    // -- Back-to-top: mostrar só após scroll
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      const toggleBtt = () => btt.classList.toggle('visible', window.scrollY > 400);
+      window.addEventListener('scroll', toggleBtt, { passive: true });
+      toggleBtt();
+    }
+
+    // -- Reveal via IntersectionObserver (refinado)
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const reveals = document.querySelectorAll('.reveal:not(.visible)');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  }
+
+  // Disparar melhorias quando o site for revelado
+  const _origReveal = window.revelarSite;
+  if (typeof _origReveal === 'function') {
+    window.revelarSite = function() {
+      _origReveal.apply(this, arguments);
+      setTimeout(initMelhorias, 100);
+    };
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.body.classList.contains('content-revealed') ||
+        localStorage.getItem('casamento_confirmado') === 'true') {
+      setTimeout(initMelhorias, 200);
+    }
+  });
+
 </script>
 
 </body>
