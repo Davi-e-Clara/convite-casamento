@@ -1361,6 +1361,7 @@
   <ul id="nav-menu" class="nav-menu">
     <li><a href="#cerimonia">O Dia</a></li>
     <li><a href="#confirmacao">Confirmar</a></li>
+    <li><a href="#playlist">Playlist</a></li>
     <li><a href="#presentes">Presentes</a></li>
   </ul>
 </nav>
@@ -1567,6 +1568,128 @@
 
 
 
+
+<div class="section-divider" aria-hidden="true"><span class="ornament">♪</span></div>
+<!-- PLAYLIST DA CERIMÔNIA -->
+<style>
+  #playlist { max-width: 900px; }
+  #playlist .playlist-card {
+    position: relative;
+    background: linear-gradient(160deg, var(--white) 0%, var(--cream) 100%);
+    border: 1px solid var(--gold-light);
+    border-radius: 18px;
+    padding: 48px 44px 44px;
+    box-shadow: 0 10px 40px rgba(61, 90, 128, 0.08);
+    overflow: hidden;
+    text-align: center;
+  }
+  #playlist .playlist-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(201,169,110,0.10), transparent 42%),
+      radial-gradient(circle at 88% 82%, rgba(139,167,199,0.10), transparent 45%);
+    pointer-events: none;
+  }
+  #playlist .playlist-mark {
+    font-family: 'Parisienne', cursive;
+    font-size: 4.4rem; line-height: 1;
+    color: var(--gold); opacity: 0.55;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  #playlist .verse-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.12rem; font-style: italic;
+    line-height: 1.85; color: var(--brown);
+    max-width: 640px; margin: 0 auto 8px;
+    position: relative;
+  }
+  #playlist .verse-ref {
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 26px;
+    position: relative;
+  }
+  #playlist .playlist-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.98rem; line-height: 1.75; color: var(--brown-light);
+    max-width: 560px; margin: 0 auto 32px;
+    position: relative;
+  }
+  #playlist .playlist-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--blue-navy), var(--blue-dark));
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem; letter-spacing: 2.5px; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(61, 90, 128, 0.28);
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    position: relative;
+  }
+  #playlist .playlist-btn:hover,
+  #playlist .playlist-btn:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(61, 90, 128, 0.38);
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-navy));
+  }
+  #playlist .playlist-btn svg {
+    width: 20px; height: 20px; flex-shrink: 0;
+  }
+  #playlist .playlist-btn .play-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 0 0 rgba(232,212,168,0.7);
+    animation: playlistPulse 1.8s ease-out infinite;
+  }
+  @keyframes playlistPulse {
+    0% { box-shadow: 0 0 0 0 rgba(232,212,168,0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(232,212,168,0); }
+    100% { box-shadow: 0 0 0 0 rgba(232,212,168,0); }
+  }
+  #playlist .playlist-meta {
+    margin-top: 18px;
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sage); position: relative;
+  }
+  @media (max-width: 640px) {
+    #playlist .playlist-card { padding: 36px 22px 32px; border-radius: 14px; }
+    #playlist .playlist-mark { font-size: 3.4rem; }
+    #playlist .verse-text { font-size: 1rem; }
+    #playlist .playlist-btn { padding: 14px 24px; font-size: 0.75rem; letter-spacing: 2px; }
+  }
+</style>
+<section id="playlist" class="reveal">
+  <div class="section-title">Playlist da Cerimônia</div>
+  <div class="section-sub">Louvores que cantaremos juntos</div>
+  <div class="playlist-card">
+    <div class="playlist-mark" aria-hidden="true">♪</div>
+    <p class="verse-text">
+      &ldquo;Cantem ao Senhor um cântico novo, cantem ao Senhor, todas as terras.
+      Cantem ao Senhor, bendigam o seu nome; proclamem a sua salvação, dia após dia.&rdquo;
+    </p>
+    <div class="verse-ref">Salmo 96:1,2</div>
+    <p class="playlist-body">
+      Vamos louvar ao Senhor — essa é a playlist das músicas que vamos cantar na cerimônia.
+    </p>
+    <a
+      class="playlist-btn"
+      href="https://www.youtube.com/playlist?list=PLISe-wd-NTWU87_THy0jjWKUsCRydU_mF"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir playlist da cerimônia no YouTube"
+    >
+      <span class="play-dot" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>
+      </svg>
+      Ouvir no YouTube
+    </a>
+    <div class="playlist-meta">Playlist • YouTube</div>
+  </div>
+</section>
 
 <div class="section-divider" aria-hidden="true"><span class="ornament">❦</span></div>
 <!-- LISTA DE PRESENTES -->
