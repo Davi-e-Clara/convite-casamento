@@ -1177,10 +1177,9 @@
       transition: transform 0.35s cubic-bezier(.2,.7,.3,1.2),
                   box-shadow 0.35s ease,
                   border-color 0.35s ease;
-      border: 1px solid transparent;
     }
     .gift-card:hover {
-      border-color: rgba(201, 169, 110, 0.45);
+      border-color: rgba(201, 169, 110, 0.55);
       box-shadow: 0 14px 36px rgba(61, 90, 128, 0.18),
                   0 0 0 1px rgba(201, 169, 110, 0.15) inset;
     }
@@ -2369,7 +2368,23 @@
 
     const pts = Array.from({ length: 25 }, mkParticle);
 
+    // Pausa o rAF quando o hero sai da viewport (economia de bateria/CPU).
+    let isVisible = true;
+    let rafId = null;
+    if ('IntersectionObserver' in window) {
+      const heroVis = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && rafId === null) draw();
+      }, { threshold: 0 });
+      heroVis.observe(canvas);
+    }
+    // Pausa também quando a aba fica oculta.
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && isVisible && rafId === null) draw();
+    });
+
     function draw() {
+      if (!isVisible || document.hidden) { rafId = null; return; }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = 0; i < pts.length; i++) {
         const p = pts[i];
@@ -2380,13 +2395,13 @@
         p.y += p.vy;
 
         if (p.y < -8) { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
-        
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = p.color + (p.a < 0 ? 0 : p.a) + ')';
         ctx.fill();
       }
-      requestAnimationFrame(draw);
+      rafId = requestAnimationFrame(draw);
     }
     draw();
   }
@@ -2638,7 +2653,9 @@
     initProgressBar();
     initBackToTop();
     initHeroParticles();
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Bug fix: garantir que initMelhorias rode também na primeira confirmação
+    setTimeout(initMelhorias, 100);
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   function revelarManualmente() {
@@ -2649,9 +2666,19 @@
   async function enviarConfirmacaoInicial() {
     const statusEl  = document.getElementById('rsvp-status-inicial');
     const btn       = document.getElementById('btn-enviar-inicial');
-    const nome      = document.getElementById('nome-inicial').value.trim();
+    const nomeInput = document.getElementById('nome-inicial');
+    const adultosInput = document.getElementById('adultos-inicial');
+    if (!btn || !nomeInput) return;
+    const nome      = nomeInput.value.trim();
     const presencaEl = document.querySelector('input[name="presenca-inicial"]:checked');
-    const adultos   = document.getElementById('adultos-inicial').value;
+    const adultos   = adultosInput ? adultosInput.value : '';
+
+    const setStatus = (msg, klass) => {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.className = klass;
+    };
+    setStatus('', 'rsvp-status');
 
     if (!nome) { alert('Por favor, informe seu nome.'); return; }
     if (!presencaEl) { alert('Por favor, indique se você irá ou não.'); return; }
@@ -2673,8 +2700,7 @@
 
       if (!res.ok) throw new Error('Erro ao enviar');
 
-      statusEl.textContent = 'Presença confirmada! Revelando o convite... 🎉';
-      statusEl.className = 'rsvp-status ok';
+      setStatus('Presença confirmada! Revelando o convite... 🎉', 'rsvp-status ok');
 
       if (presenca.startsWith('Sim')) launchConfetti();
 
@@ -2684,8 +2710,7 @@
       }, 1500);
 
     } catch (e) {
-      statusEl.textContent = 'Erro ao enviar. Tente novamente.';
-      statusEl.className = 'rsvp-status erro';
+      setStatus('Erro ao enviar. Tente novamente.', 'rsvp-status erro');
       btn.disabled = false;
       btn.textContent = textoOriginal;
     }
@@ -2794,46 +2819,23 @@
 
 
 
-    // -- Back-to-top: mostrar só após scroll
-    const btt = document.getElementById('back-to-top');
-    if (btt) {
-      const toggleBtt = () => btt.classList.toggle('visible', window.scrollY > 400);
-      window.addEventListener('scroll', toggleBtt, { passive: true });
-      toggleBtt();
-    }
+    // -- Back-to-top: já tratado em initBackToTop(); aqui só fallback de segurança
+    // (removido listener duplicado para evitar processamento dobrado em scroll)
 
-    // -- Reveal via IntersectionObserver (refinado)
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const reveals = document.querySelectorAll('.reveal:not(.visible)');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
-      reveals.forEach(el => io.observe(el));
-      // Fallback de segurança: garante que nada fique invisível para sempre
-      setTimeout(() => {
-        document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-          const r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
-        });
-      }, 1500);
-    } else {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    }
+    // -- Reveal: já inicializado em ativarRevelacaoAoRolar().
+    // Aqui mantemos apenas o fallback de segurança: garante que nenhum .reveal
+    // fique invisível para sempre caso o observer não dispare em algum dispositivo.
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      });
+    }, 1500);
   }
 
-  // Disparar melhorias quando o site for revelado
-  const _origReveal = window.revelarSite;
-  if (typeof _origReveal === 'function') {
-    window.revelarSite = function() {
-      _origReveal.apply(this, arguments);
-      setTimeout(initMelhorias, 100);
-    };
-  }
+  // Garante que initMelhorias rode tanto na primeira confirmação
+  // (via revelarSite, que já chama initMelhorias) quanto em visitas seguintes
+  // (quando o conteúdo já está revelado por localStorage).
   document.addEventListener('DOMContentLoaded', () => {
     if (document.body.classList.contains('content-revealed') ||
         localStorage.getItem('casamento_confirmado') === 'true') {
