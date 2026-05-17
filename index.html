@@ -1501,7 +1501,7 @@
         <div class="count-item"><strong id="cd-min">00</strong><span>Minutos</span></div>
         <div class="count-item"><strong id="cd-seg">00</strong><span>Segundos</span></div>
       </div>
-      <div class="countdown-date" aria-hidden="true">26 · 06 · 2026 · 19h30</div>
+      <div class="countdown-date" aria-hidden="true">26 · 06 · 2026 · 18h30</div>
     </div>
 
     <div class="grande-dia-map-wrap">
@@ -1671,7 +1671,7 @@
 
 <div class="section-divider" aria-hidden="true"><span class="ornament">❦</span></div>
 <!-- LISTA DE PRESENTES -->
-<section id="presentes" class="reveal">
+<section id="presentes">
   <div class="section-title">Lista de Presentes</div>
   <div class="section-sub">Um gesto de carinho para o nosso lar</div>
 
@@ -2417,7 +2417,7 @@
             observer.unobserve(entries[i].target);
           }
         }
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
       for (let i = 0; i < alvos.length; i++) {
         observer.observe(alvos[i]);
       }
@@ -2762,8 +2762,15 @@
             io.unobserve(e.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
       reveals.forEach(el => io.observe(el));
+      // Fallback de segurança: garante que nada fique invisível para sempre
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+        });
+      }, 1500);
     } else {
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     }
