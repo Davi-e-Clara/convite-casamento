@@ -22,7 +22,7 @@
   <!-- ── Performance: preconnect para Google Fonts ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@400;500&family=Parisienne&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,7 +36,7 @@
       --blue-dark: #5f7896;
       --blue-navy: #3d5a80;
       --gold: #c9a96e;
-      --gold-light: #e8d4a8;
+      --gold-light: #d9bf85;
       --sage: #94a694;
       --sand: #d6c5b0;
       --brown: #3d2f1e;
@@ -44,7 +44,9 @@
       --white: #ffffff;
     }
 
-    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
 
     a:focus-visible,
     button:focus-visible,
@@ -215,11 +217,11 @@
     }
     .hero-text .names {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 300; color: var(--blue-navy);
-      line-height: 1.1; letter-spacing: -1px;
+      font-size: clamp(3.6rem, 11vw, 7rem);
+      font-weight: 400; color: var(--blue-navy);
+      line-height: 1.05; letter-spacing: -2px;
     }
-    .hero-text .names span { color: var(--gold); font-style: italic; }
+    .hero-text .names span { color: var(--gold); font-family: 'Parisienne', cursive; font-weight: 400; font-size: 0.7em; vertical-align: 0.05em; letter-spacing: 0; }
     .hero-text .date {
       margin-top: 16px; font-size: 0.85rem; letter-spacing: 4px;
       text-transform: uppercase; color: var(--brown-light);
@@ -804,20 +806,20 @@
     }
     .btn-submit {
       width: 100%; padding: 18px;
-      background: linear-gradient(90deg, var(--gold), #d4b07c);
-      color: white;
+      background: linear-gradient(90deg, #8a6a3c, #6e5530);
+      color: #fff8e8;
       border: none; border-radius: 8px;
-      font-family: 'Jost', sans-serif; font-size: 0.9rem;
+      font-family: 'Jost', sans-serif; font-size: 0.92rem;
       letter-spacing: 2px; text-transform: uppercase;
       font-weight: 500;
       cursor: pointer; margin-top: 12px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+      box-shadow: 0 4px 15px rgba(110, 85, 48, 0.32);
     }
-    .btn-submit:hover { 
-      background: linear-gradient(90deg, #d4b07c, var(--gold));
+    .btn-submit:hover {
+      background: linear-gradient(90deg, #6e5530, #8a6a3c);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(201, 169, 110, 0.4);
+      box-shadow: 0 8px 25px rgba(110, 85, 48, 0.42);
     }
     .btn-submit:active { transform: translateY(0); }
     .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
@@ -994,13 +996,13 @@
     }
     .gift-card {
       background: var(--white);
-      border-radius: 14px;
-      border: 1px solid var(--gold-light);
-      box-shadow: 0 3px 16px rgba(61, 90, 128, 0.06);
-      transition: transform .22s ease, box-shadow .22s ease;
+      border-radius: 16px;
+      border: 1px solid rgba(201, 169, 110, 0.22);
+      box-shadow: 0 1px 2px rgba(61, 90, 128, 0.04), 0 6px 22px rgba(61, 90, 128, 0.06);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
       display: flex; flex-direction: column; overflow: hidden;
     }
-    .gift-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(61, 90, 128, 0.14); }
+    .gift-card:hover { transform: translateY(-5px); box-shadow: 0 2px 4px rgba(61, 90, 128, 0.05), 0 16px 38px rgba(61, 90, 128, 0.14); border-color: rgba(201, 169, 110, 0.45); }
     .gift-card-media {
       aspect-ratio: 1;
       background: linear-gradient(160deg, var(--cream) 0%, var(--blue-light) 100%);
@@ -1150,23 +1152,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      max-width: 320px;
+      gap: 18px;
+      max-width: 520px;
       margin: 0 auto;
-      padding: 30px 20px 10px;
-      opacity: 0.7;
+      padding: 44px 24px 24px;
     }
     .section-divider::before,
     .section-divider::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.7), transparent);
     }
     .section-divider .ornament {
       color: var(--gold);
-      font-size: 0.9rem;
-      letter-spacing: 4px;
+      font-size: 1.05rem;
+      letter-spacing: 6px;
+      transform: translateY(-1px);
     }
 
     /* Card de presente: polimento (hover dourado + badge fita) */
@@ -1296,6 +1298,47 @@
       bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
     }
 
+    /* ── DIVISOR ORNAMENTAL entre seções ── */
+    .ornament-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 18px; margin: 28px auto;
+      max-width: 520px; padding: 0 24px;
+      color: rgba(122, 92, 60, 0.55);
+      pointer-events: none;
+    }
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.55), transparent);
+    }
+    .ornament-divider svg { width: 22px; height: 22px; flex: 0 0 auto; opacity: 0.75; }
+
+    /* ── Hero countdown mini-pill ── */
+    .hero-countdown {
+      margin-top: 28px;
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 10px 22px;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 999px;
+      box-shadow: 0 4px 18px rgba(61,47,30,0.08);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; letter-spacing: 2.4px;
+      text-transform: uppercase; color: var(--brown-light);
+      position: relative; z-index: 1;
+      animation: fadeUp 1.6s ease both;
+    }
+    .hero-countdown strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; letter-spacing: 0;
+      color: var(--blue-navy); font-weight: 600;
+      text-transform: none; line-height: 1;
+    }
+    .hero-countdown .hc-sep {
+      width: 1px; height: 22px; background: rgba(201,169,110,0.55);
+    }
+
   </style>
 
   <!-- Preload da imagem LCP (hero) -->
@@ -1367,12 +1410,12 @@
 
 <!-- RSVP INICIAL (Tela de Entrada) -->
 <div id="rsvp-initial">
-  <section id="confirmacao-inicial" class="reveal visible" style="opacity: 1; transform: none; padding: 0;">
+  <section id="confirmacao-inicial" class="reveal visible" style="padding: 0;">
     <div class="rsvp-container">
       <div class="section-title">Confirmar Presença</div>
       <div class="section-sub">Sua presença é muito especial para nós</div>
 
-      <div class="rsvp-box reveal visible" style="opacity: 1; transform: none;">
+      <div class="rsvp-box reveal visible">
         <p class="rsvp-note">
           "Alegrem-se com os que se alegram"
           <span class="rsvp-note-ref">Romanos 12:15</span>
@@ -1414,7 +1457,7 @@
         </button>
       </div>
 
-      <div class="rsvp-footer-note reveal visible" style="opacity: 1; transform: none;">
+      <div class="rsvp-footer-note reveal visible">
         <span class="cursive">Ficaremos muito felizes em ter você conosco!</span>
         <p>
           Para nos ajudar na organização desse dia, confirme sua presença até o dia <strong>10 de Junho de 2026</strong>.
@@ -1451,6 +1494,13 @@
     <div class="tagline">
       "Este é o dia que o Senhor fez;<br>exultemos e alegremo-nos nele."
       <span class="tagline-ref">Salmo 118:24</span>
+    </div>
+    <div class="hero-countdown" aria-label="Contagem regressiva para o casamento">
+      <span>Faltam</span>
+      <strong id="hero-cd-dias">—</strong>
+      <span>dias</span>
+      <span class="hc-sep" aria-hidden="true"></span>
+      <span>26 · 06 · 2026</span>
     </div>
   </div>
 </div>
@@ -1706,7 +1756,7 @@
 
   <div class="category-title">🍳 Cozinha</div>
   <div class="gift-grid">
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Armário de Cozinha">
       <div class="gift-card-media"><img loading="lazy" src="images/armario-cozinha.webp" alt="Armário de Cozinha" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Armário de Cozinha</h3>
@@ -1716,7 +1766,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Geladeira">
       <div class="gift-card-media"><img loading="lazy" src="images/geladeira.webp" alt="Geladeira" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Geladeira</h3>
@@ -1726,7 +1776,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Fogão">
       <div class="gift-card-media"><img loading="lazy" src="images/fogao.webp" alt="Fogão" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Fogão</h3>
@@ -1735,7 +1785,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Mesa">
       <div class="gift-card-media"><img loading="lazy" src="images/mesa.webp" alt="Mesa" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Mesa</h3>
@@ -1744,7 +1794,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Panelas">
       <div class="gift-card-media"><img loading="lazy" src="images/jogo-panelas.webp" alt="Jogo de Panelas" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Panelas</h3>
@@ -1753,7 +1803,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Talheres">
       <div class="gift-card-media"><img loading="lazy" src="images/jogo-talheres.webp" alt="Jogo de Talheres" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Talheres</h3>
@@ -1762,7 +1812,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Copos">
       <div class="gift-card-media"><img loading="lazy" src="images/jogo-copos.webp" alt="Jogo de Copos" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Copos</h3>
@@ -1771,7 +1821,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Xícaras">
       <div class="gift-card-media"><img loading="lazy" src="images/jogo-xicaras.webp" alt="Jogo de Xícaras" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Xícaras</h3>
@@ -1780,7 +1830,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Pratos">
       <div class="gift-card-media"><img loading="lazy" src="images/jogo-pratos.webp" alt="Jogo de Pratos" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Pratos</h3>
@@ -1789,7 +1839,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Garrafas para Água">
       <div class="gift-card-media"><img loading="lazy" src="images/garrafas-agua.webp" alt="Garrafas para Água" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Garrafas para Água</h3>
@@ -1798,7 +1848,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Potes para Condimentos (Kit)">
       <div class="gift-card-media"><img loading="lazy" src="images/potes-condimentos.webp" alt="Potes para Condimentos (Kit)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Potes para Condimentos (Kit)</h3>
@@ -1807,7 +1857,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Liquidificador">
       <div class="gift-card-media"><img loading="lazy" src="images/liquidificador.webp" alt="Liquidificador" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Liquidificador</h3>
@@ -1816,7 +1866,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Cafeteira Elétrica">
       <div class="gift-card-media"><img loading="lazy" src="images/cafeteira.webp" alt="Cafeteira Elétrica" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Cafeteira Elétrica</h3>
@@ -1825,7 +1875,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Mixer">
       <div class="gift-card-media"><img loading="lazy" src="images/mixer.webp" alt="Mixer" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Mixer</h3>
@@ -1834,7 +1884,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Panela de Pressão">
       <div class="gift-card-media"><img loading="lazy" src="images/panela-pressao.webp" alt="Panela de Pressão" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Panela de Pressão</h3>
@@ -1843,7 +1893,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Espremedor">
       <div class="gift-card-media"><img loading="lazy" src="images/espremedor.webp" alt="Espremedor" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Espremedor</h3>
@@ -1852,7 +1902,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Travessas de Servir">
       <div class="gift-card-media"><img loading="lazy" src="images/assadeiras-vidro.webp" alt="Travessas de Servir" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Travessas de Servir</h3>
@@ -1861,7 +1911,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Garrafa de Café">
       <div class="gift-card-media"><img loading="lazy" src="images/garrafa-cafe.webp" alt="Garrafa de Café" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Garrafa de Café</h3>
@@ -1870,7 +1920,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Ralador de Cozinha">
       <div class="gift-card-media"><img loading="lazy" src="images/ralador.webp" alt="Ralador de Cozinha" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Ralador de Cozinha</h3>
@@ -1879,7 +1929,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Sanduicheira">
       <div class="gift-card-media"><img loading="lazy" src="images/sanduicheira.webp" alt="Sanduicheira" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Sanduicheira</h3>
@@ -1888,7 +1938,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Kit de Frigideiras">
       <div class="gift-card-media"><img loading="lazy" src="images/frigideiras.webp" alt="Kit de Frigideiras" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Kit de Frigideiras</h3>
@@ -1897,7 +1947,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Airfryer">
       <div class="gift-card-media"><img loading="lazy" src="images/airfryer.webp" alt="Airfryer" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Airfryer</h3>
@@ -1906,7 +1956,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Forno Elétrico">
       <div class="gift-card-media"><img loading="lazy" src="images/forno-eletrico.webp" alt="Forno Elétrico" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Forno Elétrico</h3>
@@ -1915,7 +1965,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Colheres para Servir">
       <div class="gift-card-media"><img loading="lazy" src="images/colheres-servir.webp" alt="Jogo de Colheres para Servir" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Colheres para Servir</h3>
@@ -1924,7 +1974,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Escorredor de Macarrão">
       <div class="gift-card-media"><img loading="lazy" src="images/escorredor-macarrao.webp" alt="Escorredor de Macarrão" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Escorredor de Macarrão</h3>
@@ -1933,7 +1983,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Peneira">
       <div class="gift-card-media"><img loading="lazy" src="images/peneira.webp" alt="Peneira" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Peneira</h3>
@@ -1942,7 +1992,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Tábua de Corte">
       <div class="gift-card-media"><img loading="lazy" src="images/tabua-corte.webp" alt="Tábua de Corte" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Tábua de Corte</h3>
@@ -1951,7 +2001,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Panos de Prato">
       <div class="gift-card-media"><img loading="lazy" src="images/panos-prato.webp" alt="Panos de Prato" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Panos de Prato</h3>
@@ -1960,7 +2010,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Escorredor de Louça">
       <div class="gift-card-media"><img loading="lazy" src="images/escorredor-louca.webp" alt="Escorredor de Louça" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Escorredor de Louça</h3>
@@ -1973,7 +2023,7 @@
 
   <div class="category-title">🛋️ Sala</div>
   <div class="gift-grid">
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Sofá">
       <div class="gift-card-media"><img loading="lazy" src="images/sofa.webp" alt="Sofá" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Sofá</h3>
@@ -1982,7 +2032,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Rack da Sala">
       <div class="gift-card-media"><img loading="lazy" src="images/rack.webp" alt="Rack da Sala" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Rack da Sala</h3>
@@ -1995,7 +2045,7 @@
 
   <div class="category-title">🛏️ Quarto</div>
   <div class="gift-grid">
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Cama do Casal">
       <div class="gift-card-media"><img loading="lazy" src="images/cama-casal.webp" alt="Cama do Casal" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Cama do Casal</h3>
@@ -2004,7 +2054,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Jogo de Lençóis">
       <div class="gift-card-media"><img loading="lazy" src="images/jogo-lencois.webp" alt="Jogo de Lençóis" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Jogo de Lençóis</h3>
@@ -2013,7 +2063,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Travesseiro (unidade)">
       <div class="gift-card-media"><img loading="lazy" src="images/travesseiro.webp" alt="Travesseiro (unidade)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Travesseiro (unidade)</h3>
@@ -2022,7 +2072,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Guarda-roupa">
       <div class="gift-card-media"><img loading="lazy" src="images/guarda-roupa.webp" alt="Guarda-roupa" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Guarda-roupa</h3>
@@ -2032,7 +2082,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Arara para Roupa">
       <div class="gift-card-media"><img loading="lazy" src="images/arara-roupa.webp" alt="Arara para Roupa" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Arara para Roupa</h3>
@@ -2041,7 +2091,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Ferro de Passar">
       <div class="gift-card-media"><img loading="lazy" src="images/ferro-de-passar.webp" alt="Ferro de Passar" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Ferro de Passar</h3>
@@ -2050,7 +2100,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Tábua de Passar">
       <div class="gift-card-media"><img loading="lazy" src="images/tabua-de-passar.webp" alt="Tábua de Passar" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Tábua de Passar</h3>
@@ -2063,7 +2113,7 @@
 
   <div class="category-title">🧺 Lavanderia</div>
   <div class="gift-grid">
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Máquina de Lavar">
       <div class="gift-card-media"><img loading="lazy" src="images/maquina-lavar.webp" alt="Máquina de Lavar" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Máquina de Lavar</h3>
@@ -2072,7 +2122,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Cesto de Roupa Suja (Kit c/ 2)">
       <div class="gift-card-media"><img loading="lazy" src="images/cesto-roupa-suja.webp" alt="Cesto de Roupa Suja (Kit c/ 2)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Cesto de Roupa Suja (Kit c/ 2)</h3>
@@ -2085,7 +2135,7 @@
 
   <div class="category-title">📚 Escritório</div>
   <div class="gift-grid">
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Escrivaninha">
       <div class="gift-card-media"><img loading="lazy" src="images/escrivaninha.webp" alt="Escrivaninha" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Escrivaninha</h3>
@@ -2095,7 +2145,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Cadeira de Escritório">
       <div class="gift-card-media"><img loading="lazy" src="images/cadeira-escritorio.webp" alt="Cadeira de Escritório" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Cadeira de Escritório</h3>
@@ -2104,7 +2154,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Estante para Livros">
       <div class="gift-card-media"><img loading="lazy" src="images/estante-livros.webp" alt="Estante para Livros" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Estante para Livros</h3>
@@ -2113,7 +2163,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Cesto de Lixo">
       <div class="gift-card-media"><img loading="lazy" src="images/cesto-lixo-escritorio.webp" alt="Cesto de Lixo" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Cesto de Lixo</h3>
@@ -2126,7 +2176,7 @@
 
   <div class="category-title">🛁 Banheiro</div>
   <div class="gift-grid">
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Toalhas de Banho (Kit c/ 2)">
       <div class="gift-card-media"><img loading="lazy" src="images/toalhas-banho.webp" alt="Toalhas de Banho (Kit c/ 2)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Toalhas de Banho (Kit c/ 2)</h3>
@@ -2135,7 +2185,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Toalha de Mão (Kit c/ 4)">
       <div class="gift-card-media"><img loading="lazy" src="images/toalha-mao.webp" alt="Toalha de Mão (Kit c/ 4)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Toalha de Mão (Kit c/ 4)</h3>
@@ -2144,7 +2194,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Tapete para Banheiro (Kit c/ 4)">
       <div class="gift-card-media"><img loading="lazy" src="images/tapete-banheiro.webp" alt="Tapete para Banheiro (Kit c/ 4)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Tapete para Banheiro (Kit c/ 4)</h3>
@@ -2153,7 +2203,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Cesto de Lixo">
       <div class="gift-card-media"><img loading="lazy" src="images/cesto-lixo-banheiro.webp" alt="Cesto de Lixo" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Cesto de Lixo</h3>
@@ -2162,7 +2212,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Baldes (Kit c/ 2)">
       <div class="gift-card-media"><img loading="lazy" src="images/baldes.webp" alt="Baldes (Kit c/ 2)" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Baldes (Kit c/ 2)</h3>
@@ -2171,7 +2221,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Acessórios de Banheiro 1">
       <div class="gift-card-media"><img loading="lazy" src="images/acessorios-banheiro.webp" alt="Acessórios de Banheiro 1" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Acessórios de Banheiro 1</h3>
@@ -2180,7 +2230,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Acessórios de Banheiro 2">
       <div class="gift-card-media"><img loading="lazy" src="images/acessorios-banheiro2.webp" alt="Acessórios de Banheiro 2" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Acessórios de Banheiro 2</h3>
@@ -2189,7 +2239,7 @@
         </div>
       </div>
     </article>
-    <article class="gift-card reveal">
+    <article class="gift-card reveal" aria-label="Presente: Espelho">
       <div class="gift-card-media"><img loading="lazy" src="images/espelho-banheiro.webp" alt="Espelho" width="400" height="400" decoding="async"></div>
       <div class="gift-card-body">
         <h3 class="gift-name">Espelho</h3>
@@ -2790,6 +2840,39 @@
       setTimeout(initMelhorias, 200);
     }
   });
+
+  // ── Hero parallax sutil (desktop, respeita reduced-motion) ──
+  (function heroParallax(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth < 768) return;
+    const img = document.querySelector('.hero-img');
+    const text = document.querySelector('.hero-text');
+    if (!img || !text) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, 600);
+        img.style.transform  = `translate3d(0, ${y * 0.12}px, 0)`;
+        text.style.transform = `translate3d(0, ${y * 0.06}px, 0)`;
+        ticking = false;
+      });
+    }, { passive: true });
+  })();
+
+  // ── Hero countdown (dias até 26/06/2026 18h30) ──
+  (function heroCountdown(){
+    const el = document.getElementById('hero-cd-dias');
+    if (!el) return;
+    const target = new Date('2026-06-26T18:30:00-03:00').getTime();
+    const tick = () => {
+      const diff = target - Date.now();
+      el.textContent = diff > 0 ? Math.ceil(diff / 86400000) : '0';
+    };
+    tick();
+    setInterval(tick, 3600 * 1000);
+  })();
 
 </script>
 
