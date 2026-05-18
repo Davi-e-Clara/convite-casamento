@@ -2808,5 +2808,178 @@
   })();
 
 </script>
+
+<!-- ============ MODO ADMIN: alternar status dos presentes ============
+     Como usar:
+       1. Abra o site com ?admin=1 no final da URL (ex.: .../convite-casamento/?admin=1)
+          (ou digite a senha "noivos" em qualquer página)
+       2. Em cada card aparecerá um botão "Marcar como ganhamos" / "Marcar como disponível".
+       3. As mudanças ficam salvas localmente (no seu navegador).
+       4. Clique em "Exportar HTML" no canto para baixar o index.html já atualizado
+          e suba esse arquivo no GitHub para todos verem.
+============================================================ -->
+<style>
+  .admin-toggle-btn{
+    position:absolute; top:8px; right:8px; z-index:5;
+    background:rgba(255,255,255,.95); border:1px solid #c9a96e;
+    color:#3d5a80; font-size:11px; font-weight:600;
+    padding:4px 8px; border-radius:6px; cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .admin-toggle-btn:hover{ background:#c9a96e; color:#fff; }
+  .gift-card{ position:relative; }
+  #admin-bar{
+    position:fixed; bottom:16px; left:16px; z-index:9999;
+    background:#3d5a80; color:#fff; padding:10px 14px;
+    border-radius:10px; font:600 13px/1.2 system-ui,sans-serif;
+    box-shadow:0 4px 14px rgba(0,0,0,.25); display:flex; gap:10px; align-items:center;
+  }
+  #admin-bar button{
+    background:#c9a96e; color:#fff; border:0; padding:6px 12px;
+    border-radius:6px; cursor:pointer; font-weight:700;
+  }
+  #admin-bar button:hover{ filter:brightness(1.1); }
+</style>
+<script>
+(function(){
+  const PHONE = '5585986657389';
+  const STORAGE_KEY = 'gift-status-overrides';
+
+  function isAdmin(){
+    const u = new URL(location.href);
+    if (u.searchParams.get('admin') === '1') return true;
+    if (location.hash.toLowerCase() === '#admin') return true;
+    return sessionStorage.getItem('admin-on') === '1';
+  }
+
+  // Senha rápida (digite "noivos" em qualquer lugar)
+  let buf = '';
+  document.addEventListener('keydown', e => {
+    buf = (buf + (e.key||'')).slice(-6).toLowerCase();
+    if (buf === 'noivos'){ sessionStorage.setItem('admin-on','1'); location.reload(); }
+  });
+
+  function loadOverrides(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+  }
+  function saveOverrides(o){ localStorage.setItem(STORAGE_KEY, JSON.stringify(o)); }
+
+  function giftName(card){
+    const lab = card.getAttribute('aria-label') || '';
+    return lab.replace(/^Presente:\s*/,'').trim();
+  }
+  function isReceived(card){
+    return !!card.querySelector('.gift-received');
+  }
+
+  function makeReceived(card){
+    const body = card.querySelector('.gift-card-body');
+    if (!body) return;
+    // remove botões de comprar/participar existentes
+    body.querySelectorAll('.gift-buy, .gift-buy--participate').forEach(el => el.remove());
+    const a = document.createElement('a');
+    a.setAttribute('aria-disabled','true');
+    a.className = 'gift-buy gift-received';
+    a.innerHTML = '<span>Já ganhamos, graças a Deus</span>';
+    body.appendChild(a);
+  }
+  function makeAvailable(card){
+    const body = card.querySelector('.gift-card-body');
+    if (!body) return;
+    body.querySelectorAll('.gift-buy, .gift-received').forEach(el => el.remove());
+    const name = giftName(card);
+    const msg  = 'Olá! Gostaria de presentear vocês com: ' + name;
+    const a = document.createElement('a');
+    a.className = 'gift-buy';
+    a.href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg);
+    a.rel = 'noopener noreferrer';
+    a.target = '_blank';
+    a.innerHTML = '<svg aria-hidden="true" height="18" width="18"><use href="#ico-presentear"></use></svg><span>Presentear</span>';
+    body.appendChild(a);
+  }
+
+  // Aplica overrides salvos (mesmo sem modo admin, para o dono ver o status atualizado)
+  function applyOverrides(){
+    const overrides = loadOverrides();
+    document.querySelectorAll('article.gift-card').forEach(card => {
+      const name = giftName(card);
+      if (!(name in overrides)) return;
+      const want = overrides[name]; // 'received' | 'available'
+      const has  = isReceived(card) ? 'received' : 'available';
+      if (want === has) return;
+      if (want === 'received') makeReceived(card); else makeAvailable(card);
+    });
+  }
+
+  function addAdminControls(){
+    document.querySelectorAll('article.gift-card').forEach(card => {
+      if (card.querySelector('.admin-toggle-btn')) return;
+      const btn = document.createElement('button');
+      btn.className = 'admin-toggle-btn';
+      btn.type = 'button';
+      const refresh = () => {
+        btn.textContent = isReceived(card)
+          ? '↩ Marcar como disponível'
+          : '✓ Marcar como ganhamos';
+      };
+      refresh();
+      btn.addEventListener('click', () => {
+        const name = giftName(card);
+        const overrides = loadOverrides();
+        if (isReceived(card)){
+          makeAvailable(card);
+          overrides[name] = 'available';
+        } else {
+          makeReceived(card);
+          overrides[name] = 'received';
+        }
+        saveOverrides(overrides);
+        refresh();
+      });
+      card.appendChild(btn);
+    });
+  }
+
+  function exportHTML(){
+    // Clona o documento e remove tudo do modo admin antes de exportar
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.admin-toggle-btn, #admin-bar').forEach(el => el.remove());
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], {type:'text/html'});
+    const url  = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function addAdminBar(){
+    if (document.getElementById('admin-bar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'admin-bar';
+    bar.innerHTML = '<span>🔧 Modo admin</span>'
+                  + '<button id="admin-export">⬇ Exportar HTML</button>'
+                  + '<button id="admin-exit">Sair</button>';
+    document.body.appendChild(bar);
+    bar.querySelector('#admin-export').onclick = exportHTML;
+    bar.querySelector('#admin-exit').onclick = () => {
+      sessionStorage.removeItem('admin-on');
+      location.href = location.pathname;
+    };
+  }
+
+  // Roda assim que o DOM estiver pronto
+  function init(){
+    applyOverrides();
+    if (isAdmin()){
+      addAdminControls();
+      addAdminBar();
+    }
+  }
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
 </body>
 </html>
