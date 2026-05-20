@@ -606,28 +606,31 @@ section{padding:50px 16px !important;max-width:100%}
 #cerimonia .grande-dia-photo-caption{
   position:absolute;
   left:18px;
-  right:18px;
-  bottom:18px;
+  right:auto;
+  top:18px;
+  bottom:auto;
   z-index:2;
-  padding:16px 18px;
-  border-radius:12px;
-  background:rgba(253,250,243,.9);
-  border:1px solid rgba(201,169,110,.38);
-  box-shadow:0 10px 28px rgba(61,47,30,.14);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
+  width:auto;
+  max-width:min(76%, 330px);
+  padding:10px 14px 11px;
+  border-radius:10px;
+  background:rgba(253,250,243,.88);
+  border:1px solid rgba(201,169,110,.34);
+  box-shadow:0 8px 22px rgba(61,47,30,.10);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.24rem,2vw,1.55rem);
-  line-height:1.2;
+  font-size:clamp(1.06rem,1.55vw,1.28rem);
+  line-height:1.16;
   color:var(--brown);
   text-align:left;
 }
 #cerimonia .grande-dia-photo-caption span{
   display:block;
-  margin-bottom:5px;
+  margin-bottom:3px;
   font-family:'Jost',sans-serif;
-  font-size:.58rem;
-  letter-spacing:3px;
+  font-size:.48rem;
+  letter-spacing:2.4px;
   text-transform:uppercase;
   color:var(--gold);
   font-weight:500;
@@ -635,16 +638,36 @@ section{padding:50px 16px !important;max-width:100%}
 @media (max-width:640px){
   #cerimonia .section-sub{margin-bottom:28px !important;}
   #cerimonia .grande-dia-photo-caption{
-    left:12px;
-    right:12px;
-    bottom:12px;
-    padding:12px 14px;
-    font-size:1.12rem;
+    left:10px;
+    top:10px;
+    bottom:auto;
+    right:auto;
+    max-width:calc(100% - 20px);
+    padding:9px 12px 10px;
+    font-size:1rem;
   }
   #cerimonia .grande-dia-photo-caption span{
-    font-size:.52rem;
-    letter-spacing:2.2px;
+    font-size:.46rem;
+    letter-spacing:2px;
   }
+}
+
+
+/* AJUSTE FINAL — cores da contagem regressiva
+   Mantém layout e fontes. Apenas harmoniza as cores:
+   título em marrom quente e números no mesmo azul do rótulo "Playlist da Cerimônia". */
+.countdown-module-title{
+  color:#5e4734 !important;
+}
+.count-item strong{
+  color:#3d5a80 !important;
+}
+.count-item span{
+  color:#3d5a80 !important;
+  opacity:.72 !important;
+}
+.count-item + .count-item::before{
+  background:rgba(201,169,110,.38) !important;
 }
 </style>
 
