@@ -1093,6 +1093,22 @@
       width: 100%;
     }
 
+    #inicio,
+    #cerimonia,
+    #testemunho,
+    #presentes {
+      scroll-margin-top: 78px;
+    }
+
+    @media (max-width: 640px) {
+      #inicio,
+      #cerimonia,
+      #testemunho,
+      #presentes {
+        scroll-margin-top: 58px;
+      }
+    }
+
     /* Separador ornamental entre seções */
     .section-divider {
       display: flex;
@@ -2483,9 +2499,10 @@ body.content-revealed .back-to-top {
 <span aria-hidden="true" class="nav-toggle-bar"></span>
 </button>
 <ul class="nav-menu" id="nav-menu">
-<li><a href="#cerimonia" class="">O Dia</a></li>
-<li><a href="#confirmacao">Confirmar</a></li>
-<li><a href="#presentes" class="active">Presentes</a></li>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#cerimonia">O Dia</a></li>
+<li><a href="#testemunho">Testemunho</a></li>
+<li><a href="#presentes">Presentes</a></li>
 </ul>
 </nav>
 <!-- RSVP INICIAL (Tela de Entrada) -->
@@ -2551,7 +2568,7 @@ body.content-revealed .back-to-top {
 <!-- CONTEÚDO PRINCIPAL (Oculto Inicialmente) -->
 <div id="main-content">
 <!-- HERO -->
-<div class="hero">
+<div class="hero" id="inicio">
 <canvas aria-hidden="true" id="hero-canvas" width="2088" height="1132"></canvas>
 <figure class="hero-portrait" aria-label="Davi e Clara">
 <img alt="Davi e Clara" class="hero-img" decoding="async" fetchpriority="high" height="450" loading="eager" src="images/hero.jpg" width="340">
@@ -3358,6 +3375,8 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
 
   let navMenuOpen  = false;
   let lightboxOpen = false;
+  let countdownIntervalId = null;
+  let siteRevealedInitialized = false;
 
   function atualizarScrollBody() {
     document.body.style.overflow = navMenuOpen || lightboxOpen ? 'hidden' : '';
@@ -3493,6 +3512,8 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
     const toggle = document.getElementById('nav-toggle');
     const menu   = document.getElementById('nav-menu');
     if (!nav || !toggle || !menu) return;
+    if (nav.dataset.navReady === 'true') return;
+    nav.dataset.navReady = 'true';
 
     function setOpen(open) {
       navMenuOpen = open;
@@ -3520,6 +3541,7 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
     const elMin  = document.getElementById('cd-min');
     const elSeg  = document.getElementById('cd-seg');
     if (!elDias || !elHoras || !elMin || !elSeg) return;
+    if (countdownIntervalId) clearInterval(countdownIntervalId);
 
     function setVal(el, val) {
       if (el.textContent === val) return;
@@ -3542,7 +3564,7 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
       setVal(elSeg,   String(seg).padStart(2, '0'));
     }
     tick();
-    setInterval(tick, 1000);
+    countdownIntervalId = setInterval(tick, 1000);
   }
 
   /* ─────────────────────────────────────────────
@@ -3722,9 +3744,9 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
   /* ─────────────────────────────────────────────
      RSVP INICIAL E REVELAÇÃO
   ───────────────────────────────────────────── */
-  function revelarSite() {
-    document.body.classList.add('content-revealed');
-    // Reinicializar funções agora que o conteúdo está visível
+  function inicializarConteudoRevelado() {
+    if (siteRevealedInitialized) return;
+    siteRevealedInitialized = true;
     iniciarContagemRegressiva();
     ativarRevelacaoAoRolar();
     initNavMobile();
@@ -3732,8 +3754,12 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
     initProgressBar();
     initBackToTop();
     initHeroParticles();
-    // Bug fix: garantir que initMelhorias rode também na primeira confirmação
     setTimeout(initMelhorias, 100);
+  }
+
+  function revelarSite() {
+    document.body.classList.add('content-revealed');
+    inicializarConteudoRevelado();
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -3799,8 +3825,10 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
      LOGICA DE PERSISTÊNCIA E INICIALIZAÇÃO
   ───────────────────────────────────────────── */
   function verificarRevelacao() {
-    if (localStorage.getItem('casamento_confirmado') === 'true') {
-      revelarSite();
+    if (document.body.classList.contains('content-revealed') ||
+        localStorage.getItem('casamento_confirmado') === 'true') {
+      document.body.classList.add('content-revealed');
+      inicializarConteudoRevelado();
     }
   }
 
@@ -3918,7 +3946,7 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
   document.addEventListener('DOMContentLoaded', () => {
     if (document.body.classList.contains('content-revealed') ||
         localStorage.getItem('casamento_confirmado') === 'true') {
-      setTimeout(initMelhorias, 200);
+      inicializarConteudoRevelado();
     }
   });
 
