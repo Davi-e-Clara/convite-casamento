@@ -1041,7 +1041,6 @@
     }
 
     /* Performance: renderização preguiçosa de seções longas */
-    #presentes .gift-grid,
     #testemunho {
       content-visibility: auto;
       contain-intrinsic-size: 1px 600px;
@@ -1575,6 +1574,7 @@
 
 /* 5) LISTA DE PRESENTES — intro minimalista --------------- */
 #presentes{ display:flex; flex-direction:column; }
+#presentes > *{ order: 20; }
 #presentes > .section-sub{
   order: 1;
   font-family:'Jost', sans-serif !important;
@@ -1597,6 +1597,10 @@
   margin-bottom: 24px !important;
 }
 #presentes > .verse-block{ order: 3; }
+#presentes > div[style*="text-align:center"]{ order: 4; }
+#presentes > .gift-controls{ order: 5; }
+#presentes > .category-title,
+#presentes > .gift-grid{ order: 20; }
 #presentes .verse-block{
   background: transparent !important;
   border: 0 !important;
@@ -1653,6 +1657,10 @@
   background: var(--cream2) !important;
   transform: none !important;
   box-shadow: 0 4px 14px rgba(61,47,30,.08) !important;
+}
+#presentes .gift-card.reveal{
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* 6) CONFIRMAR PRESENÇA — minimalista --------------------- */
