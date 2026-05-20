@@ -597,6 +597,55 @@ section{padding:50px 16px !important;max-width:100%}
 #admin-bar{position:fixed;bottom:16px;left:16px;z-index:9999;background:#3d5a80;color:#fff;padding:10px 14px;border-radius:10px;font:600 13px/1.2 system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.25);display:flex;gap:10px;align-items:center}
 #admin-bar button{background:#c9a96e;color:#fff;border:0;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700}
 #admin-bar button:hover{filter:brightness(1.1)}
+
+
+/* Ajuste: nome da igreja integrado à foto da seção O nosso dia */
+#cerimonia .section-sub{margin-bottom:42px !important;}
+#cerimonia .grande-dia-body{margin-top:0 !important;}
+#cerimonia .grande-dia-photo{position:relative;}
+#cerimonia .grande-dia-photo-caption{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  z-index:2;
+  padding:16px 18px;
+  border-radius:12px;
+  background:rgba(253,250,243,.9);
+  border:1px solid rgba(201,169,110,.38);
+  box-shadow:0 10px 28px rgba(61,47,30,.14);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.24rem,2vw,1.55rem);
+  line-height:1.2;
+  color:var(--brown);
+  text-align:left;
+}
+#cerimonia .grande-dia-photo-caption span{
+  display:block;
+  margin-bottom:5px;
+  font-family:'Jost',sans-serif;
+  font-size:.58rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+@media (max-width:640px){
+  #cerimonia .section-sub{margin-bottom:28px !important;}
+  #cerimonia .grande-dia-photo-caption{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    padding:12px 14px;
+    font-size:1.12rem;
+  }
+  #cerimonia .grande-dia-photo-caption span{
+    font-size:.52rem;
+    letter-spacing:2.2px;
+  }
+}
 </style>
 
 <link as="image" fetchpriority="high" href="images/hero.jpg" rel="preload"/>
@@ -627,32 +676,6 @@ section{padding:50px 16px !important;max-width:100%}
     }
   }
   </script>
-
-
-<style>
-/* AJUSTE ESTÉTICO — cores da contagem regressiva
-   Mantém layout e fontes; apenas equilibra a paleta para ficar menos azul. */
-.countdown-module-title {
-  color: #6a5137 !important;
-}
-
-.count-item strong {
-  color: #2f251c !important;
-}
-
-.count-item span {
-  color: #3d5a80 !important;
-  opacity: 0.58 !important;
-}
-
-.count-item + .count-item::before {
-  background: rgba(201, 169, 110, 0.42) !important;
-}
-
-.countdown-module {
-  border-color: rgba(201, 169, 110, 0.48) !important;
-}
-</style>
 
 </head>
 <body class="content-revealed">
@@ -832,10 +855,13 @@ section{padding:50px 16px !important;max-width:100%}
 <div class="grande-dia-inner">
 <div class="section-title">O nosso dia</div>
 <div class="section-sub">Junte-se a nós</div>
-<p class="grande-dia-venue">Igreja Bíblica Batista do Planalto</p>
 <div class="grande-dia-body">
 <figure class="grande-dia-photo">
 <img alt="Fachada da Igreja Bíblica Batista do Planalto, local da cerimônia" decoding="async" loading="lazy" src="images/igreja-batista-planalto.jpg"/>
+<figcaption class="grande-dia-photo-caption">
+<span>Local da cerimônia</span>
+Igreja Bíblica Batista do Planalto
+</figcaption>
 </figure>
 <div class="grande-dia-details">
 <div class="grande-dia-panel">
