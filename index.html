@@ -2082,6 +2082,25 @@ body.content-revealed .back-to-top {
   display: none !important;
 }
 
+/* AJUSTE DESKTOP — aproxima os blocos do hero sem alterar o mobile */
+@media (min-width: 641px) {
+  .hero {
+    grid-template-columns: minmax(360px, 520px) minmax(320px, 460px);
+    column-gap: clamp(46px, 5vw, 86px);
+    padding-left: clamp(32px, 4vw, 72px) !important;
+    padding-right: clamp(32px, 4vw, 72px) !important;
+  }
+
+  .hero-text {
+    justify-self: end;
+    width: min(100%, 520px);
+  }
+
+  .hero-portrait {
+    justify-self: start;
+  }
+}
+
 @media (max-width: 640px) {
   body { line-height: 1.55; }
 
