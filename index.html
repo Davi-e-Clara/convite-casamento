@@ -570,6 +570,7 @@
     }
     .grande-dia-map-wrap { margin-top: 40px; }
     .grande-dia-map-wrap--button-only { margin-top: 30px; }
+    .grande-dia-details .grande-dia-map-wrap--button-only { margin-top: 10px; }
     .grande-dia-map-ornament {
       display: flex; align-items: center; justify-content: center;
       gap: 14px; margin-bottom: 22px;
@@ -1355,8 +1356,8 @@
 /* 2) COUNTDOWN — card refinado (cream + borda dourada) ---- */
 .countdown-module{
   max-width: 768px;
-  margin: 44px auto 34px;
-  padding: 56px 54px 54px;
+  margin: 34px auto 30px;
+  padding: 34px 54px 32px;
   background:
     radial-gradient(circle at 96% 6%, rgba(214,197,176,.34) 0%, rgba(214,197,176,0) 36%),
     linear-gradient(108deg, #fffdf8 0%, #fbfaf6 58%, #f0ece4 100%);
@@ -1371,7 +1372,7 @@
 }
 .countdown-module::before{ content:none; }
 .countdown-module > .cd-monogram{
-  display:block;
+  display:none;
   font-family:'Parisienne', cursive;
   font-size: 2rem;
   line-height: 1;
@@ -1387,10 +1388,10 @@
   letter-spacing: 0 !important;
   color: var(--blue-navy) !important;
   opacity: 1 !important;
-  font-size: clamp(1.85rem, 3.4vw, 2.2rem) !important;
+  font-size: clamp(1.72rem, 3vw, 2rem) !important;
   line-height: 1.15 !important;
   font-weight: 400;
-  margin-bottom: 30px !important;
+  margin-bottom: 20px !important;
 }
 .countdown-grid{
   border-top: 0 !important;
@@ -1411,7 +1412,7 @@
 }
 .count-item strong{
   font-family:'Playfair Display', 'Cormorant Garamond', serif !important;
-  font-size: clamp(3.15rem, 7vw, 4.05rem) !important;
+  font-size: clamp(2.65rem, 5.8vw, 3.35rem) !important;
   font-style: italic;
   line-height: .92 !important;
   color: var(--blue-navy) !important;
@@ -1423,14 +1424,10 @@
   letter-spacing: 4px !important;
   color: var(--blue-navy) !important;
   opacity: .68 !important;
-  margin-top: 12px !important;
+  margin-top: 8px !important;
 }
 .countdown-date{
-  margin-top: 30px !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 5px !important;
-  color: var(--brown) !important;
-  opacity: .78 !important;
+  display: none !important;
 }
 
 /* 3) PLAYLIST — label em cima, botão à direita, mesmo tamanho */
@@ -1522,17 +1519,16 @@
 @media (max-width: 720px){
   .countdown-module{
     max-width: min(100%, 420px);
-    margin: 28px auto 24px;
-    padding: 28px 16px 24px;
+    margin: 22px auto 22px;
+    padding: 20px 16px 18px;
     border-radius: 14px;
   }
   .countdown-module > .cd-monogram{
-    font-size: 1.55rem;
-    margin-bottom: 6px;
+    display: none !important;
   }
   .countdown-module-title{
-    font-size: clamp(1.45rem, 8vw, 1.8rem) !important;
-    margin-bottom: 20px !important;
+    font-size: clamp(1.3rem, 7vw, 1.56rem) !important;
+    margin-bottom: 12px !important;
   }
   .countdown-grid{ max-width: 100%; }
   .count-item{ padding: 0 6px; }
@@ -1541,18 +1537,16 @@
     height: 64% !important;
   }
   .count-item strong{
-    font-size: clamp(2rem, 11vw, 2.55rem) !important;
+    font-size: clamp(1.75rem, 9.4vw, 2.22rem) !important;
     letter-spacing: 0 !important;
   }
   .count-item span{
     font-size: 0.46rem !important;
     letter-spacing: 1.25px !important;
-    margin-top: 8px !important;
+    margin-top: 6px !important;
   }
   .countdown-date{
-    margin-top: 22px !important;
-    font-size: 0.58rem !important;
-    letter-spacing: 2.8px !important;
+    display: none !important;
   }
   .playlist-mini{
     flex-direction: column !important;
@@ -2284,24 +2278,22 @@ body.content-revealed .back-to-top {
   }
 
   .countdown-module {
-    margin: 22px auto 18px !important;
-    padding: 22px 12px 20px !important;
+    margin: 20px auto 18px !important;
+    padding: 16px 12px 15px !important;
   }
-  .countdown-module > .cd-monogram { font-size: 1.42rem; }
+  .countdown-module > .cd-monogram { display: none !important; }
   .countdown-module-title {
-    font-size: clamp(1.34rem, 7vw, 1.62rem) !important;
-    margin-bottom: 16px !important;
+    font-size: clamp(1.22rem, 6.2vw, 1.48rem) !important;
+    margin-bottom: 10px !important;
   }
   .count-item { padding: 0 4px; }
-  .count-item strong { font-size: clamp(1.8rem, 10vw, 2.28rem) !important; }
+  .count-item strong { font-size: clamp(1.62rem, 8.8vw, 2.05rem) !important; }
   .count-item span {
     font-size: 0.43rem !important;
-    margin-top: 7px !important;
+    margin-top: 5px !important;
   }
   .countdown-date {
-    margin-top: 18px !important;
-    font-size: 0.54rem !important;
-    letter-spacing: 2.2px !important;
+    display: none !important;
   }
 
   .playlist-mini {
@@ -2620,11 +2612,15 @@ body.content-revealed .back-to-top {
             Edson Queiroz, Fortaleza — CE
           </address>
 </div>
+<div class="grande-dia-map-wrap grande-dia-map-wrap--button-only">
+<a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Dr.+Jose+Martins+Rodrigues,+155+-+Edson+Queiroz,+Fortaleza+-+CE" rel="noopener noreferrer" target="_blank">
+        📍 Abrir no Google Maps
+      </a>
+</div>
 </div>
 </div>
 <!-- Módulo de Contagem Integrado -->
 <div class="countdown-module reveal visible">
-<span aria-hidden="true" class="cd-monogram">D&nbsp;&amp;&nbsp;C</span>
 <div class="countdown-module-title cursive">Falta pouco para o nosso sim</div>
 <div class="countdown-grid">
 <div class="count-item"><strong id="cd-dias" class="animating">37</strong><span>Dias</span></div>
@@ -2632,12 +2628,6 @@ body.content-revealed .back-to-top {
 <div class="count-item"><strong id="cd-min" class="animating">43</strong><span>Minutos</span></div>
 <div class="count-item"><strong id="cd-seg" class="animating">18</strong><span>Segundos</span></div>
 </div>
-<div aria-hidden="true" class="countdown-date">26 · 06 · 2026 · 19h30</div>
-</div>
-<div class="grande-dia-map-wrap grande-dia-map-wrap--button-only">
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Dr.+Jose+Martins+Rodrigues,+155+-+Edson+Queiroz,+Fortaleza+-+CE" rel="noopener noreferrer" target="_blank">
-        📍 Abrir no Google Maps
-      </a>
 </div>
 <!-- Playlist da Cerimônia — card discreto -->
 <style>
