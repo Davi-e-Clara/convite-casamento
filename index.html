@@ -1828,6 +1828,197 @@
   margin-top: 12px;
 }
 
+/* HERO EDITORIAL — primeira dobra inspirada no convite de referência */
+.hero {
+  min-height: 100svh;
+  display: grid !important;
+  grid-template-columns: minmax(290px, 0.92fr) minmax(300px, 0.86fr);
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(42px, 8vw, 108px);
+  padding: 108px clamp(40px, 7vw, 82px) 34px !important;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(201,169,110,0.1), transparent 26%),
+    radial-gradient(circle at 92% 18%, rgba(139,167,199,0.08), transparent 30%),
+    linear-gradient(112deg, #f8f0df 0%, #fbf7ec 50%, #f5efe2 100%) !important;
+}
+
+.hero::before {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.18), transparent 38%),
+    radial-gradient(circle at 78% 48%, rgba(201,169,110,0.1), transparent 34%) !important;
+}
+
+.hero-portrait {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  z-index: 1;
+  width: min(39vw, 460px);
+  min-width: 300px;
+  margin: 0;
+  padding: clamp(12px, 1.4vw, 18px);
+  border: 1px solid rgba(201,169,110,0.34);
+  border-radius: 999px 999px 10px 10px / 48% 48% 10px 10px;
+  background:
+    linear-gradient(#fbf6ea, #fbf6ea) padding-box,
+    linear-gradient(180deg, rgba(201,169,110,0.46), rgba(201,169,110,0.16)) border-box;
+  box-shadow: 0 22px 60px rgba(61,47,30,0.08);
+  animation: fadeUp 1.2s ease both;
+}
+
+.hero-portrait::before,
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: clamp(-20px, -1.6vw, -12px);
+  border: 1px solid rgba(201,169,110,0.22);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.hero-portrait::after {
+  inset: clamp(-38px, -3vw, -24px);
+  opacity: 0.55;
+}
+
+.hero-portrait .hero-img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 3 / 4;
+  display: block;
+  object-fit: cover;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+.hero-photo-monogram {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(16px, 2vw, 26px);
+  transform: translate(-50%, 50%);
+  display: grid;
+  place-items: center;
+  width: clamp(58px, 6vw, 76px);
+  height: clamp(58px, 6vw, 76px);
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,0.55);
+  background: rgba(255,250,241,0.94);
+  box-shadow: 0 8px 22px rgba(61,47,30,0.1);
+  color: #c9a96e;
+  font-family: 'Parisienne', cursive;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  line-height: 1;
+}
+
+.hero-photo-date {
+  position: absolute;
+  left: 50%;
+  bottom: -48px;
+  transform: translateX(-50%);
+  width: max-content;
+  color: var(--blue-navy);
+  font-size: 0.62rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  opacity: 0.74;
+}
+
+.hero-text {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  justify-self: stretch;
+  margin-top: 0 !important;
+  text-align: left !important;
+  max-width: 520px;
+}
+
+.hero-text::before {
+  content: "CASAMENTO · FORTALEZA, CE";
+  display: block;
+  margin-bottom: 28px;
+  color: var(--blue-navy);
+  font: 600 0.7rem/1 'Jost', sans-serif;
+  letter-spacing: 5px;
+}
+
+.hero-text .names {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: clamp(5.2rem, 9vw, 7.7rem) !important;
+  line-height: 0.82 !important;
+  letter-spacing: -1px !important;
+  color: #201712 !important;
+}
+
+.hero-text .names span {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  vertical-align: baseline;
+}
+
+.hero-text .names .amp {
+  color: #c9a96e !important;
+  font-family: 'Parisienne', cursive !important;
+  font-size: 0.56em !important;
+  line-height: 0.9;
+  margin: 0.06em 0 0.08em;
+  letter-spacing: 0 !important;
+}
+
+.hero-text .divider {
+  width: 52px;
+  height: 1px;
+  margin: 28px 0 10px !important;
+  background: rgba(201,169,110,0.82);
+}
+
+.hero-text .date {
+  margin-top: 0 !important;
+  color: var(--blue-navy) !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 4px !important;
+  line-height: 1.9;
+}
+
+.hero-text .tagline {
+  max-width: 340px;
+  margin: 28px 0 0 !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic;
+  font-size: clamp(1.08rem, 2vw, 1.22rem) !important;
+  line-height: 1.55 !important;
+  color: #5e4734 !important;
+  text-shadow: none !important;
+}
+
+.hero-text .tagline-ref {
+  margin-top: 9px !important;
+  color: #c9a96e !important;
+  font-size: 0.56rem !important;
+  letter-spacing: 4px !important;
+}
+
+.hero-countdown {
+  margin-top: 34px !important;
+  width: min(100%, 470px);
+  justify-content: center;
+  padding: 11px 18px !important;
+  background: rgba(255,250,241,0.78) !important;
+  border-color: rgba(201,169,110,0.45) !important;
+}
+
 @media (max-width: 640px) {
   body { line-height: 1.55; }
 
@@ -1862,39 +2053,101 @@
   .ornament-divider { margin: 14px auto !important; }
 
   .hero {
-    min-height: auto;
-    padding: 86px 18px 48px !important;
+    min-height: 100svh;
+    grid-template-columns: 1fr;
+    align-content: start;
+    justify-items: center;
+    row-gap: 0;
+    padding: 72px 14px 26px !important;
   }
 
-  .hero-img { width: min(265px, 72vw); }
-  .hero-text { margin-top: 24px; }
+  .hero-portrait {
+    grid-column: 1;
+    grid-row: 1;
+    width: min(72vw, 272px);
+    min-width: 0;
+    padding: 8px;
+    border-radius: 999px 999px 8px 8px / 48% 48% 8px 8px;
+    box-shadow: 0 14px 34px rgba(61,47,30,0.08);
+  }
+  .hero-portrait::before { inset: -10px; }
+  .hero-portrait::after { display: none; }
+  .hero-portrait .hero-img {
+    width: 100% !important;
+    aspect-ratio: 3 / 3.72;
+  }
+  .hero-photo-monogram {
+    width: 48px;
+    height: 48px;
+    bottom: 10px;
+    transform: translate(-50%, 28%);
+    font-size: 1.15rem;
+    z-index: 3;
+  }
+  .hero-photo-date { display: none; }
+
+  .hero-text {
+    grid-column: 1;
+    grid-row: 2;
+    width: min(100%, 352px);
+    margin: -8px auto 0 !important;
+    padding: 18px 16px 16px;
+    text-align: center !important;
+    border: 1px solid rgba(201,169,110,0.38);
+    border-radius: 14px;
+    background: rgba(255,250,241,0.88);
+    box-shadow: 0 12px 28px rgba(61,47,30,0.07);
+    backdrop-filter: blur(8px);
+  }
+  .hero-text::before {
+    margin-bottom: 8px;
+    font-size: 0.52rem;
+    letter-spacing: 2.6px;
+  }
   .hero-text .names {
-    font-size: clamp(3.15rem, 18vw, 4.8rem);
-    line-height: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.12em;
+    font-size: clamp(2.55rem, 13.5vw, 3.35rem) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.5px !important;
+  }
+  .hero-text .names .amp {
+    font-size: 0.54em !important;
+    margin: 0 0.02em;
   }
   .hero-text .date {
-    margin-top: 10px;
-    font-size: 0.7rem;
-    letter-spacing: 2.5px;
+    font-size: 0.6rem !important;
+    letter-spacing: 2px !important;
+    line-height: 1.55;
   }
-  .hero-text .divider { margin: 14px auto; }
+  .hero-text .divider {
+    width: 42px;
+    margin: 10px auto 7px !important;
+  }
   .hero-text .tagline {
-    font-size: 1.32rem;
-    line-height: 1.32;
+    max-width: 280px;
+    margin-top: 12px !important;
+    font-size: 0.96rem !important;
+    line-height: 1.34 !important;
   }
   .hero-text .tagline-ref {
-    margin-top: 8px;
-    font-size: 0.66rem;
-    letter-spacing: 1.3px;
+    margin-top: 6px !important;
+    font-size: 0.48rem !important;
+    letter-spacing: 2.4px !important;
   }
   .hero-countdown {
-    margin-top: 20px;
-    padding: 8px 13px;
-    gap: 9px;
-    font-size: 0.58rem;
-    letter-spacing: 1.7px;
+    width: 100%;
+    margin-top: 14px !important;
+    padding: 8px 10px !important;
+    gap: 7px;
+    font-size: 0.52rem;
+    letter-spacing: 1.25px;
+    white-space: nowrap;
   }
-  .hero-countdown strong { font-size: 1.05rem; }
+  .hero-countdown strong { font-size: 1rem; }
+  .hero-countdown .hc-sep { height: 18px; }
 
   #historia {
     margin-top: 12px;
@@ -2263,12 +2516,16 @@
 <!-- HERO -->
 <div class="hero">
 <canvas aria-hidden="true" id="hero-canvas" width="2088" height="1132"></canvas>
-<img alt="Davi e Clara" class="hero-img" decoding="async" fetchpriority="high" height="450" loading="eager" src="images/hero.jpg" width="340" style="transform: translate3d(0px, 72px, 0px);">
-<div class="hero-text" style="transform: translate3d(0px, 36px, 0px);">
-<div class="names">Davi<span> &amp; </span>Clara</div>
+<figure class="hero-portrait" aria-label="Davi e Clara">
+<img alt="Davi e Clara" class="hero-img" decoding="async" fetchpriority="high" height="450" loading="eager" src="images/hero.jpg" width="340">
+<div aria-hidden="true" class="hero-photo-monogram">D &amp; C</div>
+<figcaption aria-hidden="true" class="hero-photo-date">26 · 06 · 2026</figcaption>
+</figure>
+<div class="hero-text">
+<div class="names"><span class="name-line">Davi</span><span class="amp">&amp;</span><span class="name-line">Clara</span></div>
 <div class="divider"></div>
 <div class="date">26 de Junho de 2026</div>
-<div class="date">19h30</div>
+<div class="date">19h30 · Fortaleza</div>
 <div class="tagline">
       "Este é o dia que o Senhor fez;<br>exultemos e alegremo-nos nele."
       <span class="tagline-ref">Salmo 118:24</span>
@@ -3634,7 +3891,7 @@ Levar a vida com Cristo tem me ensinado dia após dia. Em agosto de 2025 cheguei
   (function heroParallax(){
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
-    const img = document.querySelector('.hero-img');
+    const img = document.querySelector('.hero-portrait') || document.querySelector('.hero-img');
     const text = document.querySelector('.hero-text');
     if (!img || !text) return;
     let ticking = false;
